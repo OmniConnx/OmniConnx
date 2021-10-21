@@ -7,16 +7,20 @@ const cors = require("cors")
 
 dotenv.config()
 
-const app = express()
+const path = __dirname + '/views/';
+const app = express();
+
 
 var corsOptions = {
   origin: "http://localhost:8081",
 }
 
-app.use(cors(corsOptions))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser())
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(express.static(path));
+
 
 //database
 const db = require("./models/index")
@@ -43,6 +47,10 @@ if (process.env.NODE_ENV === "production") {
 //       console.log(err);
 //   }
 // });
+
+  app.get('/', function (req,res) {
+    res.sendFile(path + "index.html");
+  });
 
 require("./routes/userRoutes")(app)
 //require('./src/http-common')(app);
