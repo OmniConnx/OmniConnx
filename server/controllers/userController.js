@@ -1,12 +1,13 @@
 const db = require("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require("../data/auth.config.js")
 const dotenv = require('dotenv');
 const User = db.users;
 
 dotenv.config();
 
-exports.signup = (req, res) => {
+exports.signup = async (req, res) => {
   const user = new User({
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -26,11 +27,11 @@ exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
   })
+    .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
         return;
       }
-
       if (!user) {
         return res.status(404).send({ message: "User Not found." });
       }
@@ -47,35 +48,16 @@ exports.signin = (req, res) => {
         });
       }
 
-      var token = jwt.sign({ id: user.id }, process.ENV.JWT_SECRET, {
+      var token = jwt.sign({ id: user.id }, config.secret, {
         expiresIn: 86400 // 24 hours
       });
-      
+
       res.status(200).send({
         id: user._id,
         username: user.username,
         accessToken: token
       });
     });
-};
-
-exports.create = async (req, res) => {
-  try{
-    const { username} = req.body;
-
-    const newUser = new User({
-      username
-    });
-    
-    const user = await newUser.save();
-    console.log("Saved user")
-
-    res.json(user);
-  } catch(err){
-    console.error(err);
-    res.status(500).send();
-  }
-
 };
 
 //FOR TESTING PURPOSES
