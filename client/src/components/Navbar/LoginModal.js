@@ -5,7 +5,7 @@ import { Modal, Button, Nav, Form } from "react-bootstrap"
 import AddUser from "../add-user-component";
 import User from "../user-component";
 import UserList from "../user-list";
-import { BrowserRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom"
+import { HashRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom"
 
 function LoginModal() {
   const [show, setShow] = useState(false)
