@@ -1,34 +1,31 @@
-module.exports = app => {
-  const users = require("../controllers/userController.js");
-  var router = require("express").Router();
-  
-  // Create a new user
-  //router.post("/signup", users.signup);
-  router.post("/signup", users.create);
+const {verifyToken} = require("../middlewares/authJwt");
+const {checkDuplicateUsernameOrEmail} = require("../middlewares/verifySignUp");
+const users = require("../controllers/userController.js");
 
-  // Login a user
-  //router.post("/login", users.login);
+module.exports = function(app) {
+  app.use(function(req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+  });
 
-  // Logout a user
-  //router.get("/logout", users.logout);
+  app.post("/user/register", users.signup, function(req, res){
+    checkDuplicateUsernameOrEmail
+  });
 
+  app.post("/user/signin", users.signin);
 
-  // FOR TESTING PURPOSES ONLY
-  // // Retrieve all users
-  router.get("/", users.findAll);
+  app.get("/user", users.findAll);
 
-  // // Retrieve a single user with id
-  //router.get("/:id", users.findOne);
-
-  // // Update a user with id
-  router.put("/update/:id", users.update);
+  app.put("/user/update/:id", users.update);
 
   // // Delete a user with id
-  router.delete("/delete/:id", users.delete);
+  app.delete("/user/delete/:id", users.delete);
 
   // // delete all users
-  router.delete("/delete_all", users.deleteAll);
-
-  app.use('/user', router);
+  app.delete("/user/delete_all", users.deleteAll);
 };
     
+
