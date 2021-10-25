@@ -10,21 +10,24 @@ module.exports = function(app) {
     );
     next();
   });
-
-  app.post("/user/register", users.signup, function(req, res){
+  // POST route that creates a new user 
+  app.post("/user/signup", users.signup, function(req, res){
     checkDuplicateUsernameOrEmail
   });
 
+  // POST route that logs in a user
   app.post("/user/signin", users.signin);
 
+  // GET route that returns all users
   app.get("/user", users.findAll);
 
+  // PUT route that updates a user
   app.put("/user/update/:id", users.update);
 
-  // // Delete a user with id
+  // Route that deletes a user 
   app.delete("/user/delete/:id", users.delete);
 
-  // // delete all users
+  // Route that deletes all users
   app.delete("/user/delete_all", users.deleteAll);
 };
     

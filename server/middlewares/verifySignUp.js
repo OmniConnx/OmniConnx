@@ -1,8 +1,9 @@
 const db = require("../models");
 const User = db.user;
 
-function checkDuplicateUsernameOrEmail (req, res, next){
-  // Username
+//Function that checks that the email is not already in the database
+//You will see this function called in the signup route
+function checkDuplicateUsernameOrEmail (req, res){
   User.findOne({
     username: req.body.username
   }).exec((err, user) => {
@@ -10,7 +11,6 @@ function checkDuplicateUsernameOrEmail (req, res, next){
       res.status(500).send({ message: err });
       return;
     }
-
     if (user) {
       res.status(400).send({ message: "Failed! Username is already in use!" });
       return;

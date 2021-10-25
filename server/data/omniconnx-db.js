@@ -1,5 +1,4 @@
-// TODO: Set up your Mongoose connection here.
-
+//Database URL
 module.exports = {
     url: "mongodb://localhost:27017/omniconnx_db"
 };
