@@ -8,7 +8,7 @@ const User = db.users;
 dotenv.config();
 
 // Signs up a new user with username and then hashes the password
-exports.signup = async (req, res) => {
+exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -17,7 +17,7 @@ exports.signup = async (req, res) => {
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
-      return;
+    return;
     } else {
       res.send({ message: "User was registered successfully!" });
     }

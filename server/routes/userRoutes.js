@@ -11,14 +11,14 @@ module.exports = function(app) {
     next();
   });
   // POST route that creates a new user 
-  app.post("/user/signup",[verifySignUp.checkDuplicateUsernameOrEmail], users.signup);
+  app.post("/user/signup", [ verifySignUp.checkDuplicateUsernameOrEmail ], users.signup);
 
   // POST route that logs in a user
   app.post("/user/signin", users.signin);
 
   //FOR TESTING PURPOSES ONLY
   // GET route that returns all users
-  app.get("/user", [authJwt.verifyToken], users.findAll);
+  app.get("/user", [ authJwt.verifyToken ], users.findAll);
 
   // PUT route that updates a user
   app.put("/user/update/:id", users.update);

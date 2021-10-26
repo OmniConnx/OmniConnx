@@ -1,4 +1,5 @@
 const { authJwt } = require("../middlewares");
+
 const posts = require("../controllers/postController.js");
 
 module.exports = function(app) {
@@ -10,7 +11,7 @@ module.exports = function(app) {
     next();
   });
   // POST route that creates a post one authenticated 
-  app.post("/post/create", posts.create);
+  app.post("/post/create",[authJwt.verifyToken], posts.create);
 
   //FOR TESTING PURPOSES ONLY
   // GET route that returns single post with id
