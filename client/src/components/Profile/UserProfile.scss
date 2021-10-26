@@ -1,14 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+// font-family: 'Nunito', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Oswald', sans-serif;
+
 .userProfile {
+    margin: 3rem;
+    font-family: 'Nunito', sans-serif;
+    .prof {
+        font-family: 'Oswald', sans-serif;
+        color: #00A3CF;
+        padding: 1rem;
+        h1 {
+            font-size: 64px;
+        }
+    }
+    button {
+        box-shadow: none;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 20px;
+        background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+        color: white;
+        font-size: 24px;
+    }
+    .createPost {
+        color: white;
+        text-decoration: none;
+    }
     .profmain {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        img {
-            border-radius: 10px;
-        }
-        div {
-            margin: 1rem 3rem;
+        padding: 0 5rem;
+        .usericon {
+            width: 20%;
         }
         .profinfo{
             display: flex;
@@ -16,47 +42,111 @@
             justify-content: flex-start;
             align-items:flex-start;
         }
+        .skill {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 0 0 3rem;
+            .skillcard {
+                border-radius: 20px;
+                background-color: #EAD2FF;
+                color: #3C5487;
+                margin: 3rem;
+                padding: 3rem;
+                width: 100%;
+            }
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            .statcard {
+                border-radius: 20px;
+                background-color: #76C9BF;
+                color: #3C5487;
+                padding: 3rem;
+                width: 100%;
+            }
+        }
     }
 
     .bio {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
+        padding: 0 7rem;
         .biocard {
-            border: lightgrey solid 2px;
+            border: #76C9BF solid 2px;
             border-radius: 20px;
             color: gray;
-            margin: 3rem;
-            padding: 3rem;
-            width: 50%;
+            padding: 4rem;
+            width: 100%;
         }
     }
 
-    .cards {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        & > * {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem;
-            padding: 3rem;
-            & > * {
-                margin: 0.5rem;
+    .userposts {
+        padding: 5rem 7rem;
+        .postinfo {
+            .yourpost {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                font-family: 'Oswald', sans-serif;
+                color: #00A3CF;
             }
-            img {
-                height: auto;
-                width: 100px;
-                border-radius: 50%;
+            .newpost {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
             }
         }
-        & > .card {
-            border: 2px solid lightgray;
-            border-radius: 10px;
+
+        .noposts {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0 7rem;
+            .nopostscard {
+                color: gray;
+                padding: 4rem;
+                width: 100%;
+            }
+        }
+
+        // cards currently not in use!
+        .cards {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            & > * {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 2rem;
+                padding: 3rem;
+                & > * {
+                    margin: 0.5rem;
+                }
+                img {
+                    height: auto;
+                    width: 100px;
+                    border-radius: 50%;
+                }
+            }
+            & > .card {
+                border: 2px solid lightgray;
+                border-radius: 10px;
+            }
         }
     }
+    
 
 }
