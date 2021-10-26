@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
-const db = require("../models");
-const config = require("../data/auth.config.js")
-const User = db.user;
+const config = require("../data/authConfig.js")
 
+// Function that checks for token(checks if you are signed in)
+// You will see this function in every route that requires authentication
 function verifyToken (req, res, next) {
   let token = req.headers["x-access-token"];
 
@@ -19,4 +19,7 @@ function verifyToken (req, res, next) {
   });
 };
 
-module.exports = verifyToken;
+const authJwt = {
+  verifyToken
+};
+module.exports = authJwt;

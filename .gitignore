@@ -1,3 +1,8 @@
+#OmniConnx dev configs 
+#compiled frontend React files 
+build/
+views/
+
 # Logs
 logs
 *.log

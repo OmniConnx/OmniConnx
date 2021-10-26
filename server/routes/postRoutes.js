@@ -1,31 +1,33 @@
-/*
-module.exports = app => {
-    const posts = require("../controllers/postController.js");
-    const auth = require("../middleware/auth")
-    var router = require("express").Router();
-  
-  // Create a new post
-  //For auth
-  //  router.post("/create", auth, posts.create);
-  router.post("/create", posts.create);
+const { authJwt } = require("../middlewares");
 
-  // // Update a user with id
-  router.put("/update/:id", posts.update);
+const posts = require("../controllers/postController.js");
 
-  // // Delete a user with id
-  router.delete("/delete/:id", posts.delete);
- 
+module.exports = function(app) {
+  app.use(function(req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+  });
+  // POST route that creates a post one authenticated 
+  app.post("/post/create",[authJwt.verifyToken], posts.create);
 
-// FOR TESTING PURPOSES ONLY
-  // Retrieve all posts
-  //router.get("/", auth, posts.findAll);
-  router.get("/", posts.findAll);
-  // // Retrieve a single user with id
-  router.get("/:id", posts.findOne);
- 
-  // // delete all users
-  router.delete("/delete_all", posts.deleteAll);
+  //FOR TESTING PURPOSES ONLY
+  // GET route that returns single post with id
+  app.get("/post/:id", [authJwt.verifyToken], posts.findOne);
 
-  app.use('/post', router);
+  // GET route that returns all posts
+  app.get("/post", [authJwt.verifyToken], posts.findAll);
+
+  // PUT route that updates a post
+  app.put("/post/update/:id", [authJwt.verifyToken], posts.update);
+
+  // Route that deletes a post 
+  app.delete("/post/delete/:id", [authJwt.verifyToken], posts.delete);
+
+  // Route that deletes all posts
+  app.delete("/post/delete_all", [authJwt.verifyToken], posts.deleteAll);
 };
-*/
+    
+
