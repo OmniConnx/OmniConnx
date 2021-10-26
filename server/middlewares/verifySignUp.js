@@ -1,5 +1,5 @@
 const db = require("../models");
-const User = db.user;
+const User = db.users;
 
 //Function that checks that the email is not already in the database
 //You will see this function called in the signup route
@@ -17,5 +17,8 @@ function checkDuplicateUsernameOrEmail (req, res){
     }
   });
 };
+const verifySignUp = {
+  checkDuplicateUsernameOrEmail
+};
 
-module.exports = checkDuplicateUsernameOrEmail;
+module.exports = verifySignUp;

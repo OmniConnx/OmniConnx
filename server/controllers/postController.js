@@ -1,4 +1,4 @@
-/*
+
 const { posts } = require("../models");
 const db = require("../models");
 const Post = db.posts;
@@ -166,4 +166,3 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-*/
