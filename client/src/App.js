@@ -51,8 +51,8 @@ function App() {
           <NavigationBar />
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path="/prof" component={UserProfile} />
-            <Route exact path="/posts" component={Posts} />
+            <Route path="/prof" component={UserProfile} />
+            <Route path="/posts" component={Posts} />
             <Route path="/makepost" component={MakePost} />
           </Switch>
           <Footer />
