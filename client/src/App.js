@@ -8,6 +8,7 @@ import Landing from "./components/Landing/Landing"
 import UserProfile from "./components/Profile/UserProfile"
 import Posts from "./components/Posts/Posts"
 import MakePost from "./components/MakePost/MakePost"
+import Register from "./components/Register/RegisterUser"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Redux
@@ -54,6 +55,7 @@ function App() {
             <Route path="/prof" component={UserProfile} />
             <Route path="/posts" component={Posts} />
             <Route path="/makepost" component={MakePost} />
+            <Route path="/register" component={Register}/>
           </Switch>
           <Footer />
         </div>
