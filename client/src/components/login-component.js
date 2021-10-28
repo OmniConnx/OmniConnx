@@ -16,7 +16,6 @@ export default class Login extends Component {
     loginUser() {
       authService.login(this.loginUsername.current.value, this.loginPassword.current.value)
       console.log(`Username: ${this.loginUsername.current.value} \nPassword: ${this.loginPassword.current.value}`)
-
     }
 
   render() {

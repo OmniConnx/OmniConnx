@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/user";
 
-//handles authentication for the user (login, logout, register) and also can get the currently authenticated user's info
+// handles authentication for the user (login, logout, register) and also can get the currently authenticated user's info
 
 class AuthService {
   
@@ -26,6 +26,7 @@ class AuthService {
      
   }
 
+  // logs currently authenticated user out
   logout() {
     localStorage.removeItem("user");
   }
@@ -43,6 +44,7 @@ class AuthService {
     });
   }
 
+  // get current user's ID and accesstoken
   getCurrentUser() {
     return JSON.parse(localStorage.getItem('user'));;
   }
