@@ -4,15 +4,6 @@ import './userProfile.css'
 import Usericon from '../../static/images/usericon.png'
 
 function UserProfile() {
-  function httpGet(theUrl) {
-     let xmlHttpReq = new XMLHttpRequest();
-     xmlHttpReq.open("GET", theUrl, false); 
-     xmlHttpReq.send(null);
-     return JSON.parse(xmlHttpReq.responseText);
-  }
-  const data = httpGet('http://localhost:8080/user/');
-  const latestUser = data[data.length - 1]
-  console.log(latestUser)
   return (
     <div className='userProfile'>
       <div className="prof">

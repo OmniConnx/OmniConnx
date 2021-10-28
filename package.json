@@ -12,9 +12,8 @@
     "build": "cd ../client && npm run build",
     "install-client": "cd ../client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "dev": "concurrently \"npm run server\" \"cd ../client && npm start\"",
-    "start": "concurrently \"npm run server\" \"cd ../client && npm start\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run server\" \"cd ./client && npm start\"",
+    "start": "concurrently \"npm run server\" \"cd ../client && npm start\""
   },
   "keywords": [],
   "author": "",
