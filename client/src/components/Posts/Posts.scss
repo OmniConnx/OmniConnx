@@ -1,63 +1,130 @@
-.posts {
-  .test {
-    display: flex;
-  }
-  display: flex;
-  flex-direction: column;
-  margin-left: 40%;
-  .createPost {
-    border: lightgrey solid 2px;
-    border-radius: 20px;
-    color: gray;
-    margin-bottom: 1rem;
-    padding: 2rem 4rem;
-    width: 60%;
-  }
-  .displayPosts {
-    display: flex;
-    flex-direction: column-reverse;
-    .post {
-      border: lightgrey solid 2px;
-      border-radius: 20px;
-      margin-bottom: 1rem;
-      padding: 1rem 4rem;
-      width: 60%;
-      .prof {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 1rem;
-        &:first-child {
-          align-items: center;
-          img {
-            height: 125px;
-            width: auto;
-            border-radius: 50%;
-            margin-right: 1rem;
-          }
-        }
-        &:last-child {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-        }
-      }
-      .tags {
-        display: flex;
-        flex-direction: row;
-        & > * {
-          border: lightgrey solid 2px;
-          border-radius: 10px;
-          padding: 0.2rem 0.4rem;
-          margin-right: 0.2rem;
-        }
-      }
-      img {
-        border-radius: 10px;
-        position: relative;
-        width: 70%;
-        max-height: 70%;
-      }
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+// font-family: 'Nunito', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Oswald', sans-serif;
+
+ //Landing page 2
+ .posts {
+    font-family: 'Nunito', sans-serif;
+    padding: 1rem;
+    .createPost {
+      color: white;
+      text-decoration: none;
     }
+    h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 48px;
+      color: #76C9BF;
+      padding: 2rem;
+    }
+    p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 24px;
+      color: #3C5487;
+      padding-bottom: 2rem;
+    }
+    button {
+      box-shadow: none;
+      padding: 10px 30px;
+      border: none;
+      border-radius: 20px;
+      background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+      color: white;
+      font-size: 24px;
+    }
+    .blurbs {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      & > * {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem;
+        img {
+          width: 50%;
+        }
+      }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----THE BELOW CODE IS WRITTEN FOR THE COMMENTED CODE IN THE POSTS FILE ----// 
+// .posts {
+//   .test {
+//     display: flex;
+//   }
+//   display: flex;
+//   flex-direction: column;
+//   margin-left: 40%;
+//   .createPost {
+//     border: lightgrey solid 2px;
+//     border-radius: 20px;
+//     color: gray;
+//     margin-bottom: 1rem;
+//     padding: 2rem 4rem;
+//     width: 60%;
+//   }
+//   .displayPosts {
+//     display: flex;
+//     flex-direction: column-reverse;
+//     .post {
+//       border: lightgrey solid 2px;
+//       border-radius: 20px;
+//       margin-bottom: 1rem;
+//       padding: 1rem 4rem;
+//       width: 60%;
+//       .prof {
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+//         margin-bottom: 1rem;
+//         &:first-child {
+//           align-items: center;
+//           img {
+//             height: 125px;
+//             width: auto;
+//             border-radius: 50%;
+//             margin-right: 1rem;
+//           }
+//         }
+//         &:last-child {
+//           display: flex;
+//           flex-direction: column;
+//           justify-content: flex-start;
+//         }
+//       }
+//       .tags {
+//         display: flex;
+//         flex-direction: row;
+//         & > * {
+//           border: lightgrey solid 2px;
+//           border-radius: 10px;
+//           padding: 0.2rem 0.4rem;
+//           margin-right: 0.2rem;
+//         }
+//       }
+//       img {
+//         border-radius: 10px;
+//         position: relative;
+//         width: 70%;
+//         max-height: 70%;
+//       }
+//     }
+//   }
+// }

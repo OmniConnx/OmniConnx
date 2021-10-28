@@ -31,7 +31,7 @@ function MakePost() {
 			</div>
 		</div>
 	));
-	
+
 	// For Redux useState variables
 	const [titles, setTitle] = useState('');
 	const [descs, setDesc] = useState('');
@@ -41,10 +41,11 @@ function MakePost() {
 	return (
 		<div className="main">
 			<form className="form">
+				<h1 className="title">Create a post</h1>
 				<input
 					type="text"
 					placeholder="Title..."
-					className='titleInput'
+					className="titleInput"
 					onChange={(e) => {
 						setTitle(e.target.value);
 					}}
@@ -70,29 +71,37 @@ function MakePost() {
 					)}
 				</div>
 
-				<div className='tagSec'>
+				<div className="tagSec">
 					<div>
 						<h3>Add a Tag </h3>
 						<input
 							type="text"
 							className="tags"
 							onChange={(e) => {
-								setTempTag(e.target.value);
+								if (tagTemp.length < 10) {
+									setTempTag(e.target.value);
+								} else {
+								}
 							}}
 							value={tagTemp}
 						/>
-						<button className='addTagsButton' onClick={() => {
-							setTag((tagsSt) => [...tagsSt, tagTemp]);
-							setTempTag('');
-						}}>
+						<button
+							className="addTagsButton"
+							onClick={() => {
+								setTag((tagsSt) => [...tagsSt, tagTemp]);
+								setTempTag('');
+							}}
+						>
 							Add
 						</button>
 					</div>
 					<div>
 						<h3>Tags: </h3>
-						<div className='disTag'>{tagsSt.map(tag => {
-							return(<div className='tag'>{tag}</div>)
-						})}</div>
+						<div className="disTag">
+							{tagsSt.map((tag) => {
+								return <div className="tag">{tag}</div>;
+							})}
+						</div>
 					</div>
 				</div>
 				<div className="button-bottoms">

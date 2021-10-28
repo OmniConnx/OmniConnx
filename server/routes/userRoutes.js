@@ -11,7 +11,9 @@ module.exports = function(app) {
     next();
   });
   // POST route that creates a new user 
-  app.post("/user/signup", [ verifySignUp.checkDuplicateUsernameOrEmail ], users.signup);
+  // app.post("/user/signup", [ verifySignUp.checkDuplicateUsernameOrEmail ], users.signup);
+  app.post("/user/signup", users.signup);
+
 
   // POST route that logs in a user
   app.post("/user/signin", users.signin);

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap");
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9,12 +10,13 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  font-family: 'Nunito', sans-serif;
 }
 
 button {
   border: none;
   font-size: 1.5rem;
-  padding: .4rem 1.5rem;
+  padding: 0.4rem 1.5rem;
   background-color: #76c9bf;
   color: white;
   -webkit-transition: 0.2s;
@@ -26,7 +28,8 @@ button {
 }
 
 .button-hover:hover {
-  background-color: #60afa6;
+  background-image: -webkit-gradient(linear, left top, right top, from(#3A31E0), to(#9D99E6));
+  background-image: linear-gradient(to right, #3A31E0, #9D99E6);
   color: #e0e0e0;
 }
 
@@ -57,12 +60,18 @@ button {
   margin-bottom: 1.5rem;
 }
 
+.form .title {
+  font-family: 'Oswald', sans-serif;
+  color: #3C5487;
+  font-size: 64px;
+}
+
 .form .titleInput {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  padding: .3rem 1rem;
+  padding: 0.3rem 1rem;
   text-align: center;
   border: lightgray solid 2px;
   border-radius: 10px;
@@ -110,7 +119,7 @@ button {
 }
 
 .form .tagSec h3 {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .form .tagSec > * {
@@ -132,6 +141,8 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .form .tagSec .tag {

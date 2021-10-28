@@ -22,6 +22,7 @@ exports.signup = (req, res) => {
       res.send({ message: "User was registered successfully!" });
     }
   });
+  console.log(User.findOne({username: req.body.username}))
 };
 
 // Signs a user in by looking for the username and then comparing the password with the hashed password in the database

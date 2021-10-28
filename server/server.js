@@ -1,20 +1,17 @@
-const express = require("express");
-const dotenv = require("dotenv");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-//const app = require('/index.js');
-const port = 8080;
-//"start": "concurrently \"react-scripts start\" \"cd backend && nodemon server\"",
+const express = require("express")
+const dotenv = require("dotenv")
+const cookieParser = require("cookie-parser")
+const cors = require("cors")
 
-dotenv.config();
+dotenv.config()
 
 const path = __dirname + '/views/';
 const app = express();
 
 
 var corsOptions = {
-  origin: "http://localhost:8081"
-};
+  origin: "http://localhost:8081",
+}
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -24,36 +21,33 @@ app.use(express.static(path));
 
 
 //database
-const db = require("./models/index");
+const db = require("./models/index")
 db.mongoose
-  .connect(db.url, {
+  .connect(process.env.MONGODB_CONNECTION_STRING || db.url, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
-    console.log("Connected to the database!");
+    console.log("Connected to the database!")
   })
-  .catch(err => {
-    console.log("Cannot connect to the database!", err);
-    process.exit();
-  });
+  .catch((err) => {
+    console.log("Cannot connect to the database!", err)
+    process.exit()
+  })
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("../client/build"))
+}
 
-  app.get('/', function (req,res) {
-    res.sendFile(path + "index.html");
-  });
+app.get('/', function (req,res) {
+  res.sendFile(path + "index.html");
+});
 
 require("./routes/userRoutes")(app);
 require("./routes/postRoutes")(app);
 
-//require('./src/http-common')(app);
-
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
-
-
-// set port, listen for requests
-//
+  console.log(`Server is running on port ${PORT}.`)
+})
