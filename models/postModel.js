@@ -1,4 +1,3 @@
-/*
 module.exports = mongoose => {
     const postSchema = mongoose.Schema(
       {
@@ -13,4 +12,3 @@ module.exports = mongoose => {
     const Post = mongoose.model("post", postSchema);
     return Post;
   };
-*/

@@ -22,7 +22,7 @@ function NavigationBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           {/* Logo Section */}
           <Nav className="me-auto">
-            <Navbar.Brand href="#">
+            <Navbar.Brand href="/">
               <img
                 src={Logo}
                 width="30"
@@ -35,8 +35,9 @@ function NavigationBar() {
            
            {/* Links Section */}
           <Nav>
-            <Nav.Link className="nav-item" href="#posts">Posts</Nav.Link>
-            <Nav.Link className="nav-item" href="#prof">Profile</Nav.Link>
+            <Nav.Link className="nav-item" href="/posts">Posts</Nav.Link>
+            <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>
+            <Nav.Link className="nav-item" href="/register">Register</Nav.Link>
             <LoginModal/>
           </Nav>
         </Navbar.Collapse>
