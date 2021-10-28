@@ -1,26 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+// font-family: 'Nunito', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+// font-family: 'Oswald', sans-serif;
+
 .main {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Nunito', sans-serif;
 }
 button {
 	border: none;
 	font-size: 1.5rem;
-    padding: .4rem 1.5rem;
+	padding: 0.4rem 1.5rem;
 	background-color: #76c9bf;
 	color: white;
 	transition: 0.2s;
 }
 .button-hover {
-    border-radius: 50px;
-    &:hover {
-        background-color: #60afa6;
-	    color: rgb(224, 224, 224);
-    }
+	border-radius: 50px;
+	&:hover {
+		background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+		color: rgb(224, 224, 224);
+	}
 }
 .addTagsButton {
-    border-radius: 0 20px 20px 0;
+	border-radius: 0 20px 20px 0;
 }
 
 .form {
@@ -33,66 +39,72 @@ button {
 	margin: 2rem;
 	padding: 2rem;
 	max-width: 50vw;
-    &>* {
-        margin-bottom: 1.5rem;
-    }
-    .titleInput {
-        display: flex;
-        width: 100%;
-        padding: .3rem 1rem;
-        text-align: center;
-        border: lightgray solid 2px;
-        border-radius: 10px;
-        font-size: 2rem;
-        font-weight: 400;
-    }
-    textarea {
-        width: 100%;
-        min-height: 20vh;
-        border: 1px lightgray solid;
-        border-radius: 10px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
-        text-align: center;
-    }
-    .img-input {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px lightgray solid;
-        border-radius: 10px;
-        padding: 2rem;
-        width: 100%;
-    }
-    .tagSec {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        h3 {
-            margin-right: .5rem;
-        }
-        &>* {
-            display: flex;
-            flex-direction: row;
-            margin-bottom: 1.5rem;
-        }
-        .disTag {
-            display: flex;
-            flex-direction: row;
-        }
-        .tag {
-            display: flex;
-            align-items: center;
-            border: lightgrey solid 2px;
-            border-radius: 10px;
-            padding: 0 1rem;
-            margin-right: 0.2rem;
-        }
-    }
-    .button-bottoms {
-        display: flex;
-        flex-direction: row;
-        width: 50%;
-        justify-content: space-around;
-    }
+	& > * {
+		margin-bottom: 1.5rem;
+	}
+	.title {
+		font-family: 'Oswald', sans-serif;
+        color: #3C5487;
+		font-size: 64px;
+	}
+	.titleInput {
+		display: flex;
+		width: 100%;
+		padding: 0.3rem 1rem;
+		text-align: center;
+		border: lightgray solid 2px;
+		border-radius: 10px;
+		font-size: 2rem;
+		font-weight: 400;
+	}
+	textarea {
+		width: 100%;
+		min-height: 20vh;
+		border: 1px lightgray solid;
+		border-radius: 10px;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 12px;
+		text-align: center;
+	}
+	.img-input {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px lightgray solid;
+		border-radius: 10px;
+		padding: 2rem;
+		width: 100%;
+	}
+	.tagSec {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		h3 {
+			margin-right: 0.5rem;
+		}
+		& > * {
+			display: flex;
+			flex-direction: row;
+			margin-bottom: 1.5rem;
+		}
+		.disTag {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+		.tag {
+			display: flex;
+			align-items: center;
+			border: lightgrey solid 2px;
+			border-radius: 10px;
+			padding: 0 1rem;
+			margin-right: 0.2rem;
+		}
+	}
+	.button-bottoms {
+		display: flex;
+		flex-direction: row;
+		width: 50%;
+		justify-content: space-around;
+	}
 }
