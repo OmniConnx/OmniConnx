@@ -11,6 +11,7 @@ module.exports = function(app) {
     next();
   });
   // POST route that creates a new user 
+  // statement below has verification to check if username already exists in database
   // app.post("/user/signup", [ verifySignUp.checkDuplicateUsernameOrEmail ], users.signup);
   app.post("/user/signup", users.signup);
 
