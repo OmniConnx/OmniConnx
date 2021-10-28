@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import React, { useState } from "react"
 import { Modal, Button, Nav, Form } from "react-bootstrap"
 import AddUser from "../add-user-component";
+import Login from "../login-component";
 import User from "../user-component";
 import UserList from "../user-list";
 import { HashRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom"
@@ -21,7 +22,7 @@ function LoginModal() {
         </Modal.Header>
         <Switch>
 
-          <Route to="/signup" component={AddUser} />
+          <Route to="/signup" component={Login} />
 
         </Switch>
 
