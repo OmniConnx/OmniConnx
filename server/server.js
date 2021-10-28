@@ -2,8 +2,6 @@ const express = require("express")
 const dotenv = require("dotenv")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
-//const app = require('/index.js');
-//"start": "concurrently \"react-scripts start\" \"cd backend && nodemon server\"",
 
 dotenv.config()
 
@@ -40,33 +38,16 @@ db.mongoose
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("../client/build"))
 }
-// app.post("/user", (req, res) => {
-//   try{
-//       const { first_name } = req.body;
-//   } catch (err) {
-//       console.log(err);
-//   }
-// });
 
-  app.get('/', function (req,res) {
-    res.sendFile(path + "index.html");
-  });
+app.get('/', function (req,res) {
+  res.sendFile(path + "index.html");
+});
 
-<<<<<<< HEAD
-require("./routes/userRoutes")(app)
-=======
 require("./routes/userRoutes")(app);
 require("./routes/postRoutes")(app);
-
->>>>>>> origin/testserver
-//require('./src/http-common')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`)
 })
-
-
-// set port, listen for requests
-//

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import authService from "../../services/auth-service";
 
+// page for registering a user account
 class RegisterUser extends React.Component {
   constructor(props) {
     super(props);
@@ -14,11 +15,12 @@ class RegisterUser extends React.Component {
     this.registerUser = this.registerUser.bind(this);
   }
 
-  // takes current values of inputted username and password and submits it through auth-services
+  // takes current values of inputted username and password and submits it to the backend through auth-services
   registerUser() {
-    alert('User was submitted with the username: ' + this.registerUsername.current.value);
     authService.register(this.registerUsername.current.value, this.registerPassword.current.value)
+    console.log(`Username: ${this.registerUsername.current.value} \nPassword: ${this.registerPassword.current.value}`)
   }
+
   render(){
     return (
       <form onSubmit={this.registerUser}>
@@ -26,7 +28,7 @@ class RegisterUser extends React.Component {
         <input type="text" ref={this.registerUsername} ></input><br />
         <label for="register_password">Password: </label><br />
         <input type="password" ref={this.registerPassword} ></input><br />
-        <input type="submit" value="Submit"></input>
+        <input type="button" value="Submit" onClick={this.registerUser}></input>
       </form>
     )
   }
