@@ -1,13 +1,14 @@
 const db = require("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const config = require("../data/auth.config.js")
+const config = require("../data/authConfig.js")
 const dotenv = require('dotenv');
 const User = db.users;
 
 dotenv.config();
 
-exports.signup = async (req, res) => {
+// Signs up a new user with username and then hashes the password
+exports.signup = (req, res) => {
   const user = new User({
     username: req.body.username,
     password: bcrypt.hashSync(req.body.password, 8)
@@ -16,13 +17,15 @@ exports.signup = async (req, res) => {
   user.save((err, user) => {
     if (err) {
       res.status(500).send({ message: err });
-      return;
+    return;
     } else {
       res.send({ message: "User was registered successfully!" });
     }
   });
 };
 
+// Signs a user in by looking for the username and then comparing the password with the hashed password in the database
+// Once it's found, it will create a token sending it back with the username and user id
 exports.signin = (req, res) => {
   User.findOne({
     username: req.body.username
@@ -61,7 +64,6 @@ exports.signin = (req, res) => {
 };
 
 //FOR TESTING PURPOSES
-
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
   const username = req.query.username;
@@ -69,7 +71,6 @@ exports.findAll = (req, res) => {
 
   User.find(condition)
     .then(data => {
-      console.log(data)
       res.send(data);
     })
     .catch(err => {

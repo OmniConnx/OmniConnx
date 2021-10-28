@@ -52,7 +52,13 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path + "index.html");
   });
 
+<<<<<<< HEAD
 require("./routes/userRoutes")(app)
+=======
+require("./routes/userRoutes")(app);
+require("./routes/postRoutes")(app);
+
+>>>>>>> origin/testserver
 //require('./src/http-common')(app);
 
 // set port, listen for requests
@@ -61,6 +67,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`)
 })
 
-//require("./routes/postRoutes")(app);
+
 // set port, listen for requests
 //
