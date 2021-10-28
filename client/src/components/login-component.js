@@ -23,12 +23,14 @@ export default class Login extends Component {
     this.loginPassword = React.createRef();
   
     // declare function to register user on submit
-    this.loginUser = this.registerUser.bind(this);
+    this.loginUser = this.loginUser.bind(this);
   }
     // takes current values of inputted username and password and submits it to the backend through auth-services
     loginUser() {
       alert('User was submitted with the username: ' + this.loginUsername.current.value);
       authService.login(this.loginUsername.current.value, this.loginPassword.current.value)
+      console.log(`Username: ${this.loginUsername.current.value} \nPassword: ${this.loginPassword.current.value}`)
+
     }
 
   render() {
@@ -38,7 +40,8 @@ export default class Login extends Component {
       <input type="text" ref={this.loginUsername} ></input><br />
       <label for="login_password">Password: </label><br />
       <input type="password" ref={this.loginPassword} ></input><br />
-      <input type="submit" value="Submit"></input>
+      <input type="button" value="Submit" onClick={this.loginUser}></input>
+
     </form>
        
     );
