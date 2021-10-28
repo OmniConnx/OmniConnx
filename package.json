@@ -13,11 +13,7 @@
     "install-client": "cd ./client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "dev": "concurrently \"npm run server\" \"cd ./client && npm start\"",
-<<<<<<< HEAD:package.json
     "start": "concurrently \"npm run server\" \"cd ./client && npm start\""
-=======
-    "start": "concurrently \"npm run server\" \"cd ../client && npm start\""
->>>>>>> backend:server/package.json
   },
   "keywords": [],
   "author": "",
