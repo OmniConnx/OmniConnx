@@ -5,6 +5,7 @@ import Mentorpost from '../../static/images/mentor-post.png'
 import Financialpost from '../../static/images/financial-post.png'
 import Reviewspost from '../../static/images/reviews-post.png'
 
+// Example of post object
 // const examplePostData = [
 //   {
 //     _id: "1234567890",
@@ -35,9 +36,11 @@ import Reviewspost from '../../static/images/reviews-post.png'
 function Posts() {
   // function post(postList) {
   //   return postList.map((post) => {
+    // returns an array of tags divs from postsList object
   //     const tags = post.tags.map((tag) => {
   //       return <div>{tag}</div>
   //     })
+    // returns a html parsed div
   //     return (
   //       <div className="post">
   //         <div className="prof">
