@@ -4,13 +4,13 @@ module.exports = app => {
   
   // Create a new user
   //router.post("/signup", users.signup);
-  router.post("/signup", users.create);
+  router.post("/signup", users.signup);
 
   // Login a user
-  //router.post("/login", users.login);
+  router.post("/signin", users.signin);
 
   // Logout a user
-  //router.get("/logout", users.logout);
+  // router.get("/logout", users.logout);
 
 
   // FOR TESTING PURPOSES ONLY

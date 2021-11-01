@@ -1,155 +1,67 @@
 const db = require("../models");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const config = require("../data/authConfig.js")
 const dotenv = require('dotenv');
 const User = db.users;
-
 dotenv.config();
-
-// Register
-/*
-exports.signup = async (req, res) => {
-
-  try {
-    const { username, password, passwordVerify } = req.body;
-
-    if (!username || !password || !passwordVerify)
-      return res
-        .status(400)
-        .json({ errorMessage: "Please enter all required fields." })
-
-    if (password.length < 6)
-      return res
-        .status(400)
-        .json({ errorMessage: "Password must be at least 6 characters long." })
-
-    if (password !== passwordVerify)
-      return res.status(400).json({
-        errorMessage: "Passwords do not match."
+// Signs up a new user with username and then hashes the password
+exports.signup = (req, res) => {
+  const user = new User({
+    username: req.body.username,
+    password: bcrypt.hashSync(req.body.password, 8)
+  });
+  user.save((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+    return;
+    } else {
+      res.send({ message: "User was registered successfully!" });
+    }
+  });
+  console.log(User.findOne({username: req.body.username}))
+};
+// Signs a user in by looking for the username and then comparing the password with the hashed password in the database
+// Once it's found, it will create a token sending it back with the username and user id
+exports.signin = (req, res) => {
+  User.findOne({
+    username: req.body.username
+  })
+    .exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!"
+        });
+      }
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400 // 24 hours
       });
-    
-    const existingUser = await User.findOne({ username });
-    
-    if (existingUser)
-      return res
-        .status(400)
-        .json({ errorMessage: "Username already exists." });
-
-    // hash the password
-    const salt = await bcrypt.genSalt();
-    const passwordHash = await bcrypt.hash(password, salt);
-
-    // save a new user account to the database
-    
-    const newUser = new User({
-      username,
-      passwordHash
+      res.status(200).send({
+        id: user._id,
+        username: user.username,
+        accessToken: token
+      });
     });
-
-    const savedUser = await newUser.save();
-
-    //sign the token
-
-    const token = jwt.sign(
-      {
-        user: savedUser._id,
-      },
-      process.env.JWT_SECRET
-    );
-
-    // send the token in a HTTP-only cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-    }).send();
-
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
-  }
-    
 };
-
-// log in a user
-exports.login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
-    //validate 
-    if (!username || !password)
-    return res
-      .status(400)
-      .json({ errorMessage: "Please enter all required fields." })
-    
-    const existingUser = await User.findOne({ username });
-    if (!existingUser)
-      return res
-        .status(401)
-        .json({ errorMessage: "Wrong username or password" });
-    const passwordCorrect = await bcrypt.compare(
-      password,
-      existingUser.passwordHash
-    );
-    if (!passwordCorrect)
-      return res
-        .status(401)
-        .json({ errorMessage: "Wrong username or password" });
-
-    //sign the token
-    const token = jwt.sign(
-      {
-        user: existingUser._id,
-      },
-      process.env.JWT_SECRET
-    );
-    // send the token in a HTTP-only cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-    }).send();
-  } catch (err) {
-    console.error(err);
-    res.status(500).send();
-  }
-};
-
-exports.logout = (req, res) => {
-  res
-    .cookie("token", "", {
-      httpOnly: true,
-      expires: new Date(0),
-    })
-    .send();
-};
-*/
-
-exports.create = async (req, res) => {
-  try{
-    const { username} = req.body;
-
-    const newUser = new User({
-      username
-    });
-    
-    const user = await newUser.save();
-    console.log("Saved user")
-
-    res.json(user);
-  } catch(err){
-    console.error(err);
-    res.status(500).send();
-  }
-
-};
-
-
 //FOR TESTING PURPOSES
-
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
   const username = req.query.username;
   var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
-
   User.find(condition)
     .then(data => {
-      console.log(data)
       res.send(data);
     })
     .catch(err => {
@@ -159,11 +71,9 @@ exports.findAll = (req, res) => {
       });
     });
 };
-
 // Find a single User with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-
   User.findById(id)
     .then(data => {
       if (!data)
@@ -176,7 +86,6 @@ exports.findOne = (req, res) => {
         .send({ message: "Error retrieving User with id=" + id });
     });
 };
-
 // Update a User by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
@@ -184,9 +93,7 @@ exports.update = (req, res) => {
       message: "Data to update can not be empty!"
     });
   }
-
   const id = req.params.id;
-
   User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
@@ -201,11 +108,9 @@ exports.update = (req, res) => {
       });
     });
 };
-
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-
   User.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
@@ -224,7 +129,6 @@ exports.delete = (req, res) => {
       });
     });
 };
-
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
   User.deleteMany({})
@@ -240,4 +144,3 @@ exports.deleteAll = (req, res) => {
       });
     });
 };
-
