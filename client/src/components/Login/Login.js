@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import authService from "../services/auth-service";
+import authService from "../../services/auth-service";
 
 export default class Login extends Component {
   constructor(props) {
@@ -20,15 +20,16 @@ export default class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.loginUser}>
-      <label for="register_username">Username: </label><br />
-      <input type="text" ref={this.loginUsername} ></input><br />
-      <label for="login_password">Password: </label><br />
-      <input type="password" ref={this.loginPassword} ></input><br />
-      <input type="button" value="Submit" onClick={this.loginUser}></input>
-
-    </form>
-       
+      <div>
+        <h1> Login </h1>
+        <form onSubmit={this.loginUser}>
+          <label for="register_username">Username: </label><br />
+          <input type="text" ref={this.loginUsername} ></input><br />
+          <label for="login_password">Password: </label><br />
+          <input type="password" ref={this.loginPassword} ></input><br />
+          <input type="button" value="Submit" onClick={this.loginUser}></input>
+        </form>
+      </div>
     );
   }
 }

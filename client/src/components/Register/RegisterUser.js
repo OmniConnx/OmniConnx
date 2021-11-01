@@ -23,13 +23,16 @@ class RegisterUser extends React.Component {
 
   render(){
     return (
-      <form onSubmit={this.registerUser}>
-        <label for="register_username">Username: </label><br />
-        <input type="text" ref={this.registerUsername} ></input><br />
-        <label for="register_password">Password: </label><br />
-        <input type="password" ref={this.registerPassword} ></input><br />
-        <input type="button" value="Submit" onClick={this.registerUser}></input>
-      </form>
+      <div>
+        <h1>Registration</h1>
+        <form onSubmit={this.registerUser}>
+          <label for="register_username">Username: </label><br />
+          <input type="text" ref={this.registerUsername} ></input><br />
+          <label for="register_password">Password: </label><br />
+          <input type="password" ref={this.registerPassword} ></input><br />
+          <input type="button" value="Submit" onClick={this.registerUser}></input>
+        </form>
+      </div>
     )
   }
 }

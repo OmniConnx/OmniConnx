@@ -38,6 +38,7 @@ function NavigationBar() {
             <Nav.Link className="nav-item" href="/posts">Posts</Nav.Link>
             <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>
             <Nav.Link className="nav-item" href="/register">Register</Nav.Link>
+            <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>
             <LoginModal/>
           </Nav>
         </Navbar.Collapse>

@@ -9,7 +9,7 @@ import UserProfile from "./components/Profile/UserProfile"
 import Posts from "./components/Posts/Posts"
 import MakePost from "./components/MakePost/MakePost"
 import Register from "./components/Register/RegisterUser"
-import Login from "./components/login-component"
+import Login from "./components/Login/Login"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
