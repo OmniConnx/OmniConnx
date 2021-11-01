@@ -1,6 +1,5 @@
 module.exports = app => {
     const posts = require("../controllers/postController.js");
-    const auth = require("../middleware/auth")
     var router = require("express").Router();
   
 //   // Create a new post
