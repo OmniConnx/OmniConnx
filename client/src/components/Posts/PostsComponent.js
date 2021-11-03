@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // importing authService in order to use function that gets info of currently authenticated user
 import authService from "../../services/auth-service";
+import postsService from "../../services/postsService";
 
 // form for submitting a post
 class PostsComponent extends React.Component {
@@ -15,10 +16,12 @@ class PostsComponent extends React.Component {
         // function for submitting post
         this.submitPost = this.submitPost.bind(this);
 
+        //submits posts with title, body, and currently authenticated user's id
         submitPost() {
             const title = this.postTitle.current.value
             const body = this.postBody.current.value
-            console.log(authService.getCurrentUser())
+            const userid = authService.getCurrentUser().id
+            postsService.submitPost(title, body, userid)
         }
     }
     render() {
