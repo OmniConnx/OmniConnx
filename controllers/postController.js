@@ -48,7 +48,7 @@ exports.create = async (req, res) => {
   // app.post("/cards/new", (req, res) => { 
   //   var card = new Card(req.body);
   //   card.author = req.user._id;
-
+    
   //   if (req.user) { var card = new Card(req.body); 
   //     card.author = req.user._id;
   //     card
