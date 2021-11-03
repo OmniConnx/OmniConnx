@@ -13,7 +13,7 @@ module.exports = mongoose => {
       // company_id: { type: Number, required: true },
       // calendar_id: { type: String, required: true },
       // CV_ID: { type: Number, required: true },
-      //posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+      posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
     },
     { timestamps: { createdAt: "created_at" } }
   
