@@ -1,8 +1,8 @@
 # OmniConnx
 
-## MVP:
+## Our repo has moved! 
 
-### **Features**:
+[https://github.com/OmniConnx/OmniConnx](https://github.com/OmniConnx/OmniConnx)
 
 - #### **User profiles**
 
