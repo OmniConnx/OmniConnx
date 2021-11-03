@@ -12,7 +12,11 @@ class postsService {
         .post(`${API_URL}/create`, {
             title,
             body, 
-            userid
+        },
+        {
+            headers: {
+                'x-access-token': userid
+            }
         })
         .then( response => {
             if (response.status == '200') {

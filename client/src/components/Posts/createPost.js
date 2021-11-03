@@ -24,6 +24,8 @@ class PostsComponent extends React.Component {
         const body = this.postBody.current.value
         const userid = authService.getCurrentUser().id
         postsService.submitPost(title, body, userid)
+        // postsService.submitPost(title, body)
+
     }
     
     render() {

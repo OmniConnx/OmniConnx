@@ -4,11 +4,11 @@ const Post = db.posts;
 // Create a new post
 exports.create = async (req, res) => {
     try{
-      const { title, content } = req.body;
+      const { title, body } = req.body;
 
       const newPost = new Post({
         title,
-        content,
+        body,
       });
       
       const savedPost = await newPost.save();
