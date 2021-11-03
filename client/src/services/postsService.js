@@ -1,8 +1,8 @@
 import axios from "axios";
-import { response } from "express";
 
 const API_URL = "http://localhost:8080/post";
 
+// handles features for posts (submitting, updating, deleting, retrieving posts)
 class postsService {
 
     // makes a POST req to backend to submit post into the database
