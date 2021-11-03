@@ -16,14 +16,16 @@ class PostsComponent extends React.Component {
         // function for submitting post
         this.submitPost = this.submitPost.bind(this);
 
-        //submits posts with title, body, and currently authenticated user's id
-        submitPost() {
-            const title = this.postTitle.current.value
-            const body = this.postBody.current.value
-            const userid = authService.getCurrentUser().id
-            postsService.submitPost(title, body, userid)
-        }
     }
+
+    //submits posts with title, body, and currently authenticated user's id
+    submitPost() {
+        const title = this.postTitle.current.value
+        const body = this.postBody.current.value
+        const userid = authService.getCurrentUser().id
+        postsService.submitPost(title, body, userid)
+    }
+    
     render() {
         return (
             <div>
@@ -32,8 +34,8 @@ class PostsComponent extends React.Component {
                     <label for="postTitle"> Title: </label><br />
                     <input type="text" ref={this.postTitle}></input><br />
                     <label for="postBody"> Body: </label><br />
-                    <textarea rows="4" cols="50" ref={this.postBody}></textarea>
-                    <input type="button" value="Submit" onClick={this.submitPost()}></input>
+                    <textarea rows="4" cols="50" ref={this.postBody}></textarea><br />
+                    <input type="button" value="Submit" onClick={this.submitPost}></input>
                 </form>
             </div>
         )
