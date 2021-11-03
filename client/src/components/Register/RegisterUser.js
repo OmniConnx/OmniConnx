@@ -17,15 +17,17 @@ class RegisterUser extends React.Component {
 
   // takes current values of inputted username and password and submits it to the backend through auth-services
   registerUser() {
-    authService.register(this.registerUsername.current.value, this.registerPassword.current.value)
-    console.log(`Username: ${this.registerUsername.current.value} \nPassword: ${this.registerPassword.current.value}`)
+    const username = this.registerUsername.current.value; 
+    const password = this.registerPassword.current.value;
+    authService.register(username, password)
+    console.log(`Username: ${username} \nPassword: ${password}`)
   }
 
   render(){
     return (
       <div>
         <h1>Registration</h1>
-        <form onSubmit={this.registerUser}>
+        <form>
           <label for="register_username">Username: </label><br />
           <input type="text" ref={this.registerUsername} ></input><br />
           <label for="register_password">Password: </label><br />
