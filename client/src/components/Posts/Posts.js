@@ -64,7 +64,7 @@ function Posts() {
       <h1>POSTS</h1>
       {/* Create Post button */}
       <button>
-        <NavLink className="createPost" to="/makepost"> + Post</NavLink>
+        <NavLink className="createPost" to="/createPost"> + Post</NavLink>
       </button>
 
       <div className="blurbs">

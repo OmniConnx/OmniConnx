@@ -1,34 +1,31 @@
-module.exports = app => {
-  const users = require("../controllers/userController.js");
-  var router = require("express").Router();
-  
-  // Create a new user
-  //router.post("/signup", users.signup);
-  router.post("/signup", users.signup);
+const { authJwt } = require('../middlewares');
+const { verifySignUp } = require("../middlewares");
+const users = require("../controllers/userController.js");
 
-  // Login a user
-  router.post("/signin", users.signin);
+module.exports = function(app) {
+  app.use(function(req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
+    );
+    next();
+  });
+  // POST route that creates a new user 
+  app.post("/user/signup", [ verifySignUp.checkDuplicateUsernameOrEmail ], users.signup);
 
-  // Logout a user
-  // router.get("/logout", users.logout);
+  // POST route that logs in a user
+  app.post("/user/signin", users.signin);
 
+  //FOR TESTING PURPOSES ONLY
+  // GET route that returns all users
+  app.get("/user", [ authJwt.verifyToken ], users.findAll);
 
-  // FOR TESTING PURPOSES ONLY
-  // // Retrieve all users
-  router.get("/", users.findAll);
+  // PUT route that updates a user
+  app.put("/user/update/:id", users.update);
 
-  // // Retrieve a single user with id
-  //router.get("/:id", users.findOne);
+  // Route that deletes a user 
+  app.delete("/user/delete/:id", users.delete);
 
-  // // Update a user with id
-  router.put("/update/:id", users.update);
-
-  // // Delete a user with id
-  router.delete("/delete/:id", users.delete);
-
-  // // delete all users
-  router.delete("/delete_all", users.deleteAll);
-
-  app.use('/user', router);
+  // Route that deletes all users
+  app.delete("/user/delete_all", users.deleteAll);
 };
-    
