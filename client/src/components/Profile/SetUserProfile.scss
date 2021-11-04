@@ -1,0 +1,78 @@
+button {
+	box-shadow: none;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 20px;
+	background-image: linear-gradient(to right, #3a31e0, #9d99e6);
+	color: white;
+	font-size: 18px;
+}
+
+.img-input {
+	// display: -webkit-box;
+	// display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	// -webkit-box-pack: center;
+	// -ms-flex-pack: center;
+	// justify-content: center;
+	// -webkit-box-align: center;
+	// -ms-flex-align: center;
+	align-items: center;
+	border: 1px lightgray solid;
+	border-radius: 300px;
+	padding: 2rem;
+	width: 170px;
+	height: 20vh;
+	// background-color: red;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	align-items: center;
+}
+
+.set-user-profile {
+	min-height: 60vh;
+}
+
+.img-added {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 300px;
+	border: 1px black solid;
+	width: 15vw;
+	height: 30vh;
+	overflow: auto;
+	// background-color: red;
+}
+
+.profmain {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 30vh;
+}
+
+.profinfo {
+	display: flex;
+	flex-direction: column;
+	width: 25vw;
+	// margin-top: 2vh;
+}
+
+.input-text {
+	margin-top: 1vh;
+	border: none;
+	border-bottom: 1px lightgray solid;
+}
+.prof-pic {
+	display: flex;
+	justify-content: center;
+	// align-items: center;
+	// width: 30vw;
+	margin-right: 5vw;
+}
