@@ -11,8 +11,8 @@ module.exports = function(app) {
     next();
   });
   // POST route that creates a post one authenticated 
-  app.post("/post/create",[authJwt.verifyToken], posts.create);
-
+//   app.post("/post/create",[authJwt.verifyToken], posts.create);
+  app.post("/post/create", [authJwt.verifyToken], posts.create);
   //FOR TESTING PURPOSES ONLY
   // GET route that returns single post with id
   app.get("/post/:id", [authJwt.verifyToken], posts.findOne);
