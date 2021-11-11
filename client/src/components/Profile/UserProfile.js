@@ -4,14 +4,9 @@ import './userProfile.css'
 import Usericon from '../../static/images/usericon.png'
 import AuthService from "../../services/auth-service";
 
-const user = AuthService.getCurrentUser();
-
 function UserProfile() {
-  
-  //Refactor this into state (convert this into a export class, refer to LoginModals.js)
-  if (user) {
-    console.log(user)
-    return (
+  const user = AuthService.getCurrentUser();
+  const profile = (
       <div className='userProfile'>
         <div className="prof">
           <h1>Profile</h1>
@@ -85,11 +80,9 @@ function UserProfile() {
 
       </div>
     )
-  }else{
-    return(
-      <div>ERROR: Must be logged in to view this page</div>
-    )
-  }
+  const error = <div>ERROR: Must be logged in to view this page</div>
+  //Refactor this into state (convert this into a export class, refer to LoginModals.js)
+  return user ? profile : error
 }
 
 export default UserProfile
