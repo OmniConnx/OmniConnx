@@ -7,8 +7,10 @@ import AuthService from "../../services/auth-service";
 const user = AuthService.getCurrentUser();
 
 function UserProfile() {
-  if (user) {
   
+  //Refactor this into state (convert this into a export class, refer to LoginModals.js)
+  if (user) {
+    console.log(user)
     return (
       <div className='userProfile'>
         <div className="prof">
