@@ -1,46 +1,52 @@
 const db = require("../models");
+const jwt = require('jsonwebtoken');
 const Post = db.posts;
+const User = db.users;
 
-exports.create = (req, res) => {
-    const post = new Post({
-      title: req.body.title,
-      content: req.body.content
-    });
-    post.save((err, post) => {
-      if (err) {
-        res.status(500).send({ message: err });
-      return;
-      } else {
-        res.send({ message: "Post was created!" });
-      }
-    });
-  };
+// exports.create = (req, res) => {
+//     const post = new Post({
+//       title: req.body.title,
+//       content: req.body.content
+//     });
+//     post.save((err, post) => {
+//       if (err) {
+//         res.status(500).send({ message: err });
+//       return;
+//       } else {
+//         res.send({ message: "Post was created!" });
+//       }
+//     });
+//   };
 
 // THIS COMMENTED CODE IS FOR AN UPDATED CONTROLLER OF CREATING A POST 
 // WHERE THERE IS A RELATIONSHIP BETWEENT THE POST AND THE USER (STILL IN PROGRESS) 
 // Create a new post
-// exports.create = async (req, res) => {
-//       var post = new Post(req.body);
-//       post.author = req.user.id;
-//       if (req.user) { var post = new Post(req.body); 
-//         post.author = req.user.id;
-//         post
-//         .save()
-//         .then(post => {
-//              return User.findById(req.user.id);
-//         })
-//         .then(user => {
-//             user.posts.unshift(post);
-//             user.save();
-//             res.redirect(`/`);
-//         })
-//         .catch(err => {
-//             console.log(err.message);
-//         });
-//         } else {
-//           return res.status(401); 
-//         }
-//   };
+exports.create = async (req, res) => {
+      var post = new Post(req.body);
+      // const user = await User.findById(req.user);
+      console.log(req.userId)
+      const currentUser = await User.findById(req.userId);
+      console.log(currentUser)
+      post.author = currentUser;
+      if (req.currentUser) { var post = new Post(req.body); 
+        post.author = req.currentUser.id;
+        post
+        .save()
+        .then(post => {
+             return User.findById(req.currentUser.id);
+        })
+        .then(user => {
+            user.posts.unshift(post);
+            user.save();
+            res.redirect(`/`);
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
+        } else {
+          return res.status(401); 
+        }
+  };
 
 // Update a post by the id in the request
 exports.update = (req, res) => {

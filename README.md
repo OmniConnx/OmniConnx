@@ -36,20 +36,17 @@
 
 ## How to run app
 
-In terminal:  
-  `cd server`  
+In root folder:  
 `npm run dev`  
-Both backend Node server and React Front-End app will run concurrently  
+Both backend Node server and React Front-End app will run concurrently. We pretty much always use this, in both production and dev environments.   
 
 ## How to run just the Node backend server
 
-In terminal:  
-  `cd server`  
-`npm start`  
+In terminal:   
+`npm run server`  
 
 ## How to run just the React Front-End
 
 In terminal:  
-  `cd client`  
-`npm install`  
+`cd client`  
 `npm start` or `yarn start`
