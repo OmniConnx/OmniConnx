@@ -2,6 +2,7 @@ const db = require("../models");
 const Post = db.posts;
 
 // Create a new post
+
 exports.create = async (req, res) => {
     try{
       const { title, content } = req.body;
