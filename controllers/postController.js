@@ -21,6 +21,7 @@ const User = db.users;
 // THIS COMMENTED CODE IS FOR AN UPDATED CONTROLLER OF CREATING A POST 
 // WHERE THERE IS A RELATIONSHIP BETWEENT THE POST AND THE USER (STILL IN PROGRESS) 
 // Create a new post
+
 exports.create = async (req, res) => {
       var post = new Post(req.body);
       // const user = await User.findById(req.user);
