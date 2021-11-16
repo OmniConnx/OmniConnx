@@ -7,48 +7,15 @@ import Logo from '../../static/images/logo.png'
 import { Component } from "react"
 import AuthService from "../../services/auth-service";
 
-function Authenticated(props) {
-  if (props.auth == 'false') {
-    return null;
-  }
-
-  return (
-    <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>
-  );
-
-}
-
 export default class NavigationBar extends Component{
   constructor(props) {
     super(props);
-    const user = AuthService.getCurrentUser();
-    this.state = {isLoggedIn: false,
-                  loggedIn: ''          
-
-    };
-
-  if (user) {
-    this.setState({loggedIn : 'true'});
-    console.log(user)
-
-  }else{
-    this.setState({loggedIn : 'false'});
-  }
+    this.user = AuthService.getCurrentUser();
 }
 
   //function NavigationBar() {
   render(){
     return (
-      // <div className="navbar">
-      //   <div>
-      //     <NavLink to="/">OmniConnx</NavLink>
-      //   </div>
-      //   <div>
-      //     <NavLink to="/prof">profileTest</NavLink>
-      //     <NavLink to="/posts">Posts</NavLink>
-      //   </div>
-      // </div>
-
       <Navbar expand="lg" variant="light" className="navbar">
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -69,10 +36,11 @@ export default class NavigationBar extends Component{
             {/* Links Section */}
             <Nav>
               <Nav.Link className="nav-item" href="/posts">Posts</Nav.Link>
-              <Authenticated auth={this.state.some} />
-              <Nav.Link className="nav-item" href="/register">Register</Nav.Link>
-              <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>
-              <LoginModal/>
+              {/* Conditional rendering of logged-in features */}
+              {this.user && <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>}
+              {!this.user && <Nav.Link className="nav-item" href="/register">Register</Nav.Link>}
+              {!this.user && <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>}
+              {!this.user && <LoginModal/>}
             </Nav>
           </Navbar.Collapse>
         </Container>
