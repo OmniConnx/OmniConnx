@@ -22,32 +22,38 @@ const User = db.users;
 // WHERE THERE IS A RELATIONSHIP BETWEENT THE POST AND THE USER (STILL IN PROGRESS) 
 // Create a new post
 
-exports.create = async (req, res) => {
-      var post = new Post(req.body);
+exports.create = (req, res) => {
+      // var post = new Post(req.body);
       // const user = await User.findById(req.user);
-      console.log(req.userId)
-      const currentUser = await User.findById(req.userId);
-      console.log(currentUser)
-      post.author = currentUser;
-      if (req.currentUser) { var post = new Post(req.body); 
-        post.author = req.currentUser.id;
+      // console.log(req)
+      // const currentUser = User.findById(req.userId);
+      // console.log(currentUser._id)
+      // post.author = req.userId;
+        console.log(req.users._id)
+        var post = new Post(req.body); 
+        post.author = req.users._id;
         post
-        .save()
-        .then(post => {
-             return User.findById(req.currentUser.id);
+        .save((err, post) => {
+          if (err) {
+            res.status(500).send({ message: err });
+          return;
+          } else {
+            res.send({ message: "Post was created!" });
+          }
         })
-        .then(user => {
-            user.posts.unshift(post);
-            user.save();
-            res.redirect(`/`);
+        .then(post => {
+             return User.findById(req.users._id);
+        })
+        .then(users => {
+            users.posts.unshift(post);
+            users.save();
+            res.redirect('/');
         })
         .catch(err => {
             console.log(err.message);
         });
-        } else {
-          return res.status(401); 
-        }
-  };
+        };
+
 
 // Update a post by the id in the request
 exports.update = (req, res) => {
