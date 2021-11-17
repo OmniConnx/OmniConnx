@@ -1,73 +1,34 @@
 const db = require("../models");
 const Post = db.posts;
+const User = db.users;
 
-// Create a new post
-exports.create = async (req, res) => {
-    try{
-      const { title, body, userid } = req.body;
 
-      const newPost = new Post({
-        title,
-        body,
-        userid
-      });
-      
-      const savedPost = await newPost.save();
+// Create a post and save it with the user
+exports.create = (req, res) => { 
+  var post = new Post(req.body);
+  post.author = req.userId;
 
-      res.json(savedPost);
-    } catch(err){
-      console.error(err);
-      res.status(500).send();
+  if (req.userId) { var post = new Post(req.body); 
+    post.author = req.userId;
+    post
+    .save()
+    .then(post => {
+        return User.findById(req.userId);
+    })
+    .then(user => {
+        user.posts.unshift(post);
+        user.save();
+        res.redirect('/user');
+    })
+    .catch(err => {
+        console.log(err.message);
+    });
+    } else {
+      return res.status(401); 
     }
-
-  };
-
-
-      // var post = new Post(req.body);
-  // post.author = req.user._id;
-  // if (req.user) { var post = new Post(req.body); 
-  //   post.author = req.user._id;
-  //   post
-  //   .save()
-  //   .then(post => {
-  //        return User.findById(req.user._id);
-  //   })
-  //   .then(user => {
-  //       user.posts.unshift(post);
-  //       user.save();
-  //       res.redirect(`/`);
-  //   })
-  //   .catch(err => {
-  //       console.log(err.message);
-  //   });
-  //   } else {
-  //     return res.status(401); 
-  //   }
+};
 
 
-  // CREATE
-  // app.post("/cards/new", (req, res) => { 
-  //   var card = new Card(req.body);
-  //   card.author = req.user._id;
-    
-  //   if (req.user) { var card = new Card(req.body); 
-  //     card.author = req.user._id;
-  //     card
-  //     .save()
-  //     .then(card => {
-  //         return User.findById(req.user._id);
-  //     })
-  //     .then(user => {
-  //         user.cards.unshift(card);
-  //         user.save();
-  //         res.redirect(`/`);
-  //     })
-  //     .catch(err => {
-  //         console.log(err.message);
-  //     });
-  //     } else {
-  //       return res.status(401); 
-  //     }
 
 // Update a post by the id in the request
 exports.update = (req, res) => {
@@ -78,7 +39,6 @@ exports.update = (req, res) => {
   }
 
   const id = req.params.id;
-
   Post.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {

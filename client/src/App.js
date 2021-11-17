@@ -51,7 +51,7 @@ function App() {
   return (
     <Provider store={store}>
         <div className="App">
-          <NavigationBar />
+          <Route component={NavigationBar}/>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/prof" component={UserProfile} />

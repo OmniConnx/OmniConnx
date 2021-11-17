@@ -2,11 +2,9 @@ import { loginSubmit } from '../../reduxcomps/actions';
 import { useDispatch } from 'react-redux';
 import React, { useState } from "react"
 import { Modal, Button, Nav, Form } from "react-bootstrap"
-import AddUser from "../add-user-component";
 import Login from "../Login/Login"
-import User from "../user-component";
-import UserList from "../user-list";
 import { HashRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom"
+import RegisterUser from '../Register/RegisterUser';
 
 function LoginModal() {
   const [show, setShow] = useState(false)
@@ -21,7 +19,7 @@ function LoginModal() {
           <Modal.Title>Log In</Modal.Title>
         </Modal.Header>
         <Switch>
-        <Route to={"/signup"} component={AddUser} />
+        <Route to={"/signup"} component={RegisterUser} />
         <Route to={"/login"} component={Login} />
 
 
