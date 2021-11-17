@@ -1,58 +1,33 @@
 const db = require("../models");
-const jwt = require('jsonwebtoken');
 const Post = db.posts;
 const User = db.users;
 
-// exports.create = (req, res) => {
-//     const post = new Post({
-//       title: req.body.title,
-//       content: req.body.content
-//     });
-//     post.save((err, post) => {
-//       if (err) {
-//         res.status(500).send({ message: err });
-//       return;
-//       } else {
-//         res.send({ message: "Post was created!" });
-//       }
-//     });
-//   };
 
-// THIS COMMENTED CODE IS FOR AN UPDATED CONTROLLER OF CREATING A POST 
-// WHERE THERE IS A RELATIONSHIP BETWEENT THE POST AND THE USER (STILL IN PROGRESS) 
-// Create a new post
+// Create a post and save it with the user
+exports.create = (req, res) => { 
+  var post = new Post(req.body);
+  post.author = req.userId;
 
-exports.create = (req, res) => {
-      // var post = new Post(req.body);
-      // const user = await User.findById(req.user);
-      // console.log(req)
-      // const currentUser = User.findById(req.userId);
-      // console.log(currentUser._id)
-      // post.author = req.userId;
-        console.log(req.users._id)
-        var post = new Post(req.body); 
-        post.author = req.users._id;
-        post
-        .save((err, post) => {
-          if (err) {
-            res.status(500).send({ message: err });
-          return;
-          } else {
-            res.send({ message: "Post was created!" });
-          }
-        })
-        .then(post => {
-             return User.findById(req.users._id);
-        })
-        .then(users => {
-            users.posts.unshift(post);
-            users.save();
-            res.redirect('/');
-        })
-        .catch(err => {
-            console.log(err.message);
-        });
-        };
+  if (req.userId) { var post = new Post(req.body); 
+    post.author = req.userId;
+    post
+    .save()
+    .then(post => {
+        return User.findById(req.userId);
+    })
+    .then(user => {
+        user.posts.unshift(post);
+        user.save();
+        res.redirect('/user');
+    })
+    .catch(err => {
+        console.log(err.message);
+    });
+    } else {
+      return res.status(401); 
+    }
+};
+
 
 
 // Update a post by the id in the request
