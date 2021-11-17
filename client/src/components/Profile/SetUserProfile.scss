@@ -8,6 +8,10 @@ button {
 	font-size: 18px;
 }
 
+label {
+	margin-right: 10px;
+}
+
 .img-input {
 	// display: -webkit-box;
 	// display: -ms-flexbox;
@@ -25,6 +29,17 @@ button {
 	width: 170px;
 	height: 20vh;
 	// background-color: red;
+}
+
+.skills-form-input {
+	border: none;
+	border-bottom: 1px lightgray solid;
+	width: 15vw;
+	margin-top: 3vh;
+}
+
+.modal-body {
+	min-height: 20vh;
 }
 
 .column {

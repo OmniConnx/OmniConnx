@@ -8,6 +8,10 @@ button {
   font-size: 18px;
 }
 
+label {
+  margin-right: 10px;
+}
+
 .img-input {
   display: flex;
   flex-direction: column;
@@ -17,6 +21,17 @@ button {
   padding: 2rem;
   width: 170px;
   height: 20vh;
+}
+
+.skills-form-input {
+  border: none;
+  border-bottom: 1px lightgray solid;
+  width: 15vw;
+  margin-top: 3vh;
+}
+
+.modal-body {
+  min-height: 20vh;
 }
 
 .column {

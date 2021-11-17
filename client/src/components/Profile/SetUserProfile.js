@@ -1,6 +1,7 @@
 import { useDropzone } from 'react-dropzone';
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import SetSkills from './SetSkills';
 
 // Stylesheet
 
@@ -102,8 +103,17 @@ function SetProfile() {
 								{' '}
 								<h4>Add a new skill</h4>
 							</label> */}
-							<button
+							{/* <button
 								style={{ marginLeft: '1vw' }}
+								onClick={() => {
+									setSkillsDisplay((skillsDisplay) => [...skillsDisplay, 'hi']);
+								}}
+							>
+								+
+							</button> */}
+							<SetSkills />
+
+							<button
 								onClick={() => {
 									setSkillsDisplay((skillsDisplay) => [...skillsDisplay, 'hi']);
 								}}
@@ -114,8 +124,74 @@ function SetProfile() {
 							{typeof skillsDisplay !== undefined
 								? skillsDisplay.map((each, index) => {
 										return (
-											<div>
-												<div> hi there </div>
+											<div key={index}>
+												<div style={{ marginTop: 50 }}>
+													<div
+														style={{
+															display: 'flex',
+															flexDirection: 'column',
+															alignItems: 'center',
+														}}
+													>
+														<h2> Name of Skill </h2>
+														<div
+															style={{
+																display: 'flex',
+																flexDirection: 'row',
+																alignItems: 'center',
+															}}
+														>
+															<button
+																style={{
+																	display: 'flex',
+																	flexDirection: 'row',
+																	alignItems: 'center',
+																	justifyContent: 'center',
+																	width: 15,
+																	marginRight: 10,
+																}}
+															>
+																<h4
+																	style={{
+																		display: 'flex',
+																		flexDirection: 'row',
+																	}}
+																>
+																	{' '}
+																	<div
+																		style={{ color: 'tomato', marginLeft: 10 }}
+																	>
+																		-
+																	</div>
+																	1{' '}
+																</h4>{' '}
+															</button>
+
+															<button
+																style={{
+																	display: 'flex',
+																	flexDirection: 'row',
+																	alignItems: 'center',
+																	justifyContent: 'center',
+																	width: 15,
+																}}
+															>
+																<h4
+																	style={{
+																		display: 'flex',
+																		flexDirection: 'row',
+																		marginLeft: 10,
+																	}}
+																>
+																	{' '}
+																	<div style={{ color: 'lightgreen' }}>
+																		+
+																	</div>3{' '}
+																</h4>{' '}
+															</button>
+														</div>
+													</div>
+												</div>
 											</div>
 										);
 								  })
