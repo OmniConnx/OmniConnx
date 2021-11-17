@@ -8,12 +8,6 @@ dotenv.config()
 const path = __dirname + '/views/';
 const app = express();
 
-
-/*var corsOptions = {
-  origin: "http://localhost:8081",
-}*/
-
-//app.use(cors(corsOption));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

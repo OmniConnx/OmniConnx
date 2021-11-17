@@ -1,9 +1,10 @@
-const jwt = require("jsonwebtoken");
+  const jwt = require("jsonwebtoken");
 const config = require("../data/authConfig.js")
 
 // Function that checks for token(checks if you are signed in)
 // You will see this function in every route that requires authentication
 function verifyToken (req, res, next) {
+  console.log(req)
   let token = req.headers["x-access-token"];
 
   if (!token) {

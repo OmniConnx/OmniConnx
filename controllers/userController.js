@@ -21,6 +21,7 @@ exports.signup = (req, res) => {
   });
   console.log(User.findOne({username: req.body.username}))
 };
+
 // Signs a user in by looking for the username and then comparing the password with the hashed password in the database
 // Once it's found, it will create a token sending it back with the username and user id
 exports.signin = (req, res) => {
@@ -55,6 +56,7 @@ exports.signin = (req, res) => {
       });
     });
 };
+
 //FOR TESTING PURPOSES
 // Retrieve all Users from the database.
 exports.findAll = (req, res) => {
@@ -71,6 +73,7 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
 // Find a single User with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
@@ -86,6 +89,7 @@ exports.findOne = (req, res) => {
         .send({ message: "Error retrieving User with id=" + id });
     });
 };
+
 // Update a User by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
@@ -108,6 +112,7 @@ exports.update = (req, res) => {
       });
     });
 };
+
 // Delete a User with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
@@ -129,7 +134,8 @@ exports.delete = (req, res) => {
       });
     });
 };
-// Delete all Tutorials from the database.
+
+// Delete all Users from the database.
 exports.deleteAll = (req, res) => {
   User.deleteMany({})
     .then(data => {

@@ -7,7 +7,7 @@ import Footer from "./components/Footer/Footer"
 import Landing from "./components/Landing/Landing"
 import UserProfile from "./components/Profile/UserProfile"
 import Posts from "./components/Posts/Posts"
-import MakePost from "./components/MakePost/MakePost"
+import createPost from "./components/Posts/createPost"
 import Register from "./components/Register/RegisterUser"
 import Login from "./components/Login/Login"
 
@@ -56,7 +56,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route path="/prof" component={UserProfile} />
             <Route path="/posts" component={Posts} />
-            <Route path="/makepost" component={MakePost} />
+            <Route path="/createPost" component={createPost} />
             <Route path="/register" component={Register}/>
             <Route path="/login" component={Login}/>
           </Switch>
