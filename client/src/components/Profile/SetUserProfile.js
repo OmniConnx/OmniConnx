@@ -113,14 +113,6 @@ function SetProfile() {
 							</button> */}
 							<SetSkills />
 
-							<button
-								onClick={() => {
-									setSkillsDisplay((skillsDisplay) => [...skillsDisplay, 'hi']);
-								}}
-							>
-								+
-							</button>
-
 							{typeof skillsDisplay !== undefined
 								? skillsDisplay.map((each, index) => {
 										return (
