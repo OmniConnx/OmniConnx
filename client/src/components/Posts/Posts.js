@@ -67,7 +67,7 @@ function Posts() {
       {/* Create Post button | Accessed via log-in*/}
       {user &&
         <button>
-          <NavLink className="createPost" to="/makepost"> + Post</NavLink>
+          <NavLink className="createPost" to="/createPost"> + Post</NavLink>
         </button>
       }
 

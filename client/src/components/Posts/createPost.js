@@ -18,12 +18,12 @@ class PostsComponent extends React.Component {
 
     }
 
-    //submits posts with title, body, and currently authenticated user's id
+    //submits posts with title, body, and currently authenticated user's accessToken
     submitPost() {
         const title = this.postTitle.current.value
-        const body = this.postBody.current.value
+        const content = this.postBody.current.value
         const accessToken = authService.getCurrentUser().accessToken
-        postsService.submitPost(title, body, accessToken)
+        postsService.submitPost(title, content, accessToken)
     }
     
     render() {
