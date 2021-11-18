@@ -40,6 +40,7 @@ export default class NavigationBar extends Component{
               {this.user && <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>}
               {!this.user && <Nav.Link className="nav-item" href="/register">Register</Nav.Link>}
               {!this.user && <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>}
+              {!this.user && <Nav.Link className="nav-item" href="/logout">Logout</Nav.Link>}
               {!this.user && <LoginModal/>}
             </Nav>
           </Navbar.Collapse>
