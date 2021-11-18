@@ -78,17 +78,18 @@ function MakePost() {
 							type="text"
 							className="tags"
 							onChange={(e) => {
-								setTempTag(e.target.value);
+								if (tagTemp.length < 10) {
+									setTempTag(e.target.value);
+								} else {
+								}
 							}}
 							value={tagTemp}
 						/>
 						<button
 							className="addTagsButton"
 							onClick={() => {
-								if (tagsSt.length < 10) {
-									setTag((tagsSt) => [...tagsSt, tagTemp]);
-									setTempTag('');
-								}
+								setTag((tagsSt) => [...tagsSt, tagTemp]);
+								setTempTag('');
 							}}
 						>
 							Add
