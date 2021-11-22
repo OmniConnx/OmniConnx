@@ -94,9 +94,9 @@ function Posts() {
       
 
       <div className="blurbs">
-          <img className="mentorpost" src={Mentorpost}/>
-          <img className="financialpost" src={Financialpost}/>
-          <img className="reviewspost" src={Reviewspost}/>
+          <img className="mentorpost" src={Mentorpost} alt=""/>
+          <img className="financialpost" src={Financialpost} alt=""/>
+          <img className="reviewspost" src={Reviewspost} alt=""/>
       </div>
 
       {/* <div className="displayPosts">{post(examplePostData)}</div> */}
