@@ -87,7 +87,8 @@ exports.findAll = async (req, res) => {
     const posts = await Post.find();
     res.json(posts);
   } catch(err){
-    consosle.error(err);
+    //!
+    console.error(err);
     res.status(500).send();
   }
 };

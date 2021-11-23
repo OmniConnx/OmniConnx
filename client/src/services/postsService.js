@@ -1,6 +1,8 @@
 import axios from "axios";
+import authHeader from './auth-header';
 
 const API_URL = "http://localhost:8080/post";
+
 
 // handles features for posts (submitting, updating, deleting, retrieving posts)
 class postsService {
@@ -36,7 +38,10 @@ class postsService {
 
     //retrieve a number of latest posts, if origin is 0 then get the latest posts submitted to database
     // if !origin === 0 then pass a userID to get latests posts from a specific user
-    getPosts(origin = 0) {}
+    getPosts() {
+        return axios.get(API_URL)
+    }
+    //getPosts()
 
     getPostID() {}
 }

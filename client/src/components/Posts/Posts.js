@@ -5,6 +5,7 @@ import Mentorpost from '../../static/images/mentor-post.png'
 import Financialpost from '../../static/images/financial-post.png'
 import Reviewspost from '../../static/images/reviews-post.png'
 import AuthService from "../../services/auth-service";
+import postsService from "../../services/postsService"
 
 // Example of post object
 // const examplePostData = [
@@ -35,7 +36,12 @@ import AuthService from "../../services/auth-service";
 // ]
 
 function Posts() {
-  const user = AuthService.getCurrentUser();
+  const posts = postsService.getPosts();
+  var newArr = [];
+  for(var i=0;i<=posts.length;i++){
+    newArr += posts[i];
+  }
+  console.log(posts)
   // function post(postList) {
   //   return postList.map((post) => {
     // returns an array of tags divs from postsList object
@@ -61,15 +67,28 @@ function Posts() {
   //     )
   //   })
   // }
+
+  const user = AuthService.getCurrentUser();
+
+  const displayPosts = newArr.map((post) => {
+    return <div>    
+          { post.title}
+          { post.content}
+          </div>
+  })
+
   return (
     <div className="posts">
       <h1>POSTS</h1>
       {/* Create Post button | Accessed via log-in*/}
+  
       {user &&
         <button>
           <NavLink className="createPost" to="/createPost"> + Post</NavLink>
         </button>
       }
+      {displayPosts}
+      
 
       <div className="blurbs">
           <img className="mentorpost" src={Mentorpost}/>
