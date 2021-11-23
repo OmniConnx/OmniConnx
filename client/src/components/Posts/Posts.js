@@ -41,7 +41,10 @@ function Posts() {
   for(var i=0;i<=posts.length;i++){
     newArr += posts[i];
   }
+
   console.log(posts)
+
+
   // function post(postList) {
   //   return postList.map((post) => {
     // returns an array of tags divs from postsList object
