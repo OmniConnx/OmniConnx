@@ -20,6 +20,7 @@ import reducers from "./reduxcomps/reducers"
 
 const POST_STATE = "POST_STATE"
 
+// Load state
 export const loadState = () => {
   try {
     const serializedState = localStorage.getItem(POST_STATE)
@@ -32,6 +33,7 @@ export const loadState = () => {
   }
 }
 
+// Save state
 export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state)
@@ -41,6 +43,7 @@ export const saveState = (state) => {
   }
 }
 
+// Load default state, create redux store, save state to redux store
 const persistedState = loadState()
 const store = createStore(reducers, persistedState)
 store.subscribe(() => {
