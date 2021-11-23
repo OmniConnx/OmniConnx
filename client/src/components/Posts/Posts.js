@@ -37,14 +37,11 @@ import postsService from "../../services/postsService"
 
 function Posts() {
   const posts = postsService.getPosts();
-  var newArr = [];
-  for(var i=0;i<=posts.length;i++){
-    newArr += posts[i];
-  }
-
-  console.log(posts)
-
-
+  posts.then((post) => {
+    //console.log(post.data); //3
+    newArr = post.data
+  });
+  console.log(newArr)
   // function post(postList) {
   //   return postList.map((post) => {
     // returns an array of tags divs from postsList object
@@ -75,8 +72,7 @@ function Posts() {
 
   const displayPosts = newArr.map((post) => {
     return <div>    
-          { post.title}
-          { post.content}
+          { post}
           </div>
   })
 
