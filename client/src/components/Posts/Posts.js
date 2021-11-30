@@ -33,17 +33,22 @@ import postsService from "../../services/postsService"
 //     title: "example name of a post number 2",
 //     description: "this is an example of what a description on our post number 2 will look like",
 //   },
-// ]
-const posts = postsService.getPosts();
-var newArr = [];
+// ][];
+var newArr;
+var postList;
 
 function Posts() {
   const posts = postsService.getPosts();
   posts.then((post) => {
     //console.log(post.data); //3
     newArr = post.data
+    console.log(newArr)
+    postList = post.data.map((post) => {
+      return ( <div>{post.content}</div> 
+        );
+    })
   });
-  console.log(newArr)
+ 
 
   // function post(postList) {
   //   return postList.map((post) => {
@@ -73,11 +78,6 @@ function Posts() {
 
   const user = AuthService.getCurrentUser();
 
-  const displayPosts = newArr.map((post) => {
-    return <div> { post} </div>
-    })
-
-
   return (
     <div className="posts">
       <h1>POSTS</h1>
@@ -88,7 +88,9 @@ function Posts() {
           <NavLink className="createPost" to="/createPost"> + Post</NavLink>
         </button>
       }
-      <div>{displayPosts}</div>
+      {postList &&
+        <div> { postList} </div>
+      }
 
       <div className="blurbs">
           <img className="mentorpost" src={Mentorpost} alt=""/>
