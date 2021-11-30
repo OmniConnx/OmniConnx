@@ -36,17 +36,18 @@ import postsService from "../../services/postsService"
 // ][];
 var newArr;
 var postList;
-
 function Posts() {
   const posts = postsService.getPosts();
   posts.then((post) => {
-    //console.log(post.data); //3
+    //console.log(post.data); //
     newArr = post.data
     console.log(newArr)
-    postList = post.data.map((post) => {
-      return ( <div>{post.content}</div> 
+    postList = newArr.map((post) => {
+      console.log(post)
+      return ( <div>{post}</div> 
         );
     })
+    console.log(postList[0])
   });
  
 
