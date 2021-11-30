@@ -34,6 +34,8 @@ import postsService from "../../services/postsService"
 //     description: "this is an example of what a description on our post number 2 will look like",
 //   },
 // ]
+const posts = postsService.getPosts();
+var newArr = [];
 
 function Posts() {
   const posts = postsService.getPosts();
@@ -42,6 +44,7 @@ function Posts() {
     newArr = post.data
   });
   console.log(newArr)
+
   // function post(postList) {
   //   return postList.map((post) => {
     // returns an array of tags divs from postsList object
@@ -71,10 +74,9 @@ function Posts() {
   const user = AuthService.getCurrentUser();
 
   const displayPosts = newArr.map((post) => {
-    return <div>    
-          { post}
-          </div>
-  })
+    return <div> { post} </div>
+    })
+
 
   return (
     <div className="posts">
@@ -86,8 +88,7 @@ function Posts() {
           <NavLink className="createPost" to="/createPost"> + Post</NavLink>
         </button>
       }
-      {displayPosts}
-      
+      <div>{displayPosts}</div>
 
       <div className="blurbs">
           <img className="mentorpost" src={Mentorpost} alt=""/>
