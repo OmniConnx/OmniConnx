@@ -1,4 +1,4 @@
-import React from "react"
+import { React, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
 import "./Posts.css"
 import Mentorpost from '../../static/images/mentor-post.png'
@@ -9,14 +9,28 @@ import postsService from "../../services/postsService"
 
 function Posts() {
   const user = AuthService.getCurrentUser()
-
+  const [data, setData] = useState(null)
+  useEffect(() => {
+    postsService.getPosts().then(posts => {
+      setData(posts.data)
+      // console.log(posts.data)
+    })
+  })
+  
   // Gets post from database and returns parsed jsx elements
   const generatePosts = () => {
-    postsService.getPosts().then(posts => {
-      const postList = posts.data.map(e => <div>{e.content}</div>)
-      console.log(postList)
-      return postList
+    const postList = data.map(e => {
+      return(
+        <div className = 'blurbs'>
+          <div className='postHead'>
+            <h1>{e.title}</h1>
+            <p>{e.author}</p>
+          </div>
+          <p>{e.content}</p>
+        </div>
+      )
     })
+    return postList
   }
 
   return (
@@ -32,7 +46,7 @@ function Posts() {
       
       {/* DisplaysPosts */}
       <div className="displayPosts">
-        {generatePosts()}
+        {data ? generatePosts() : 'loading'}
       </div>
       
       {/* PlaceholderPosts */}
