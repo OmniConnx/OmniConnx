@@ -7,99 +7,41 @@ import Reviewspost from '../../static/images/reviews-post.png'
 import AuthService from "../../services/auth-service";
 import postsService from "../../services/postsService"
 
-// Example of post object
-// const examplePostData = [
-//   {
-//     _id: "1234567890",
-//     user: {
-//       username: "testUser",
-//       profPic: "https://via.placeholder.com/150",
-//       // ...
-//     },
-//     tags: ["tag1", "tag2", "tag3"],
-//     image: "https://via.placeholder.com/600x250",
-//     title: "example name of a post",
-//     description: "this is an example of what a description on our post will look like",
-//   },
-//   {
-//     _id: "0123456789",
-//     user: {
-//       username: "testUser",
-//       profPic: "https://via.placeholder.com/150",
-//       // ...
-//     },
-//     tags: ["tag1", "tag2"],
-//     image: "https://via.placeholder.com/600x250",
-//     title: "example name of a post number 2",
-//     description: "this is an example of what a description on our post number 2 will look like",
-//   },
-// ][];
-var newArr;
-var postList;
 function Posts() {
-  const posts = postsService.getPosts();
-  posts.then((post) => {
-    //console.log(post.data); //
-    newArr = post.data
-    console.log(newArr)
-    postList = newArr.map((post) => {
-      console.log(post)
-      return ( <div>{post}</div> 
-        );
+  const user = AuthService.getCurrentUser()
+
+  // Gets post from database and returns parsed jsx elements
+  const generatePosts = () => {
+    postsService.getPosts().then(posts => {
+      const postList = posts.data.map(e => <div>{e.content}</div>)
+      console.log(postList)
+      return postList
     })
-    console.log(postList[0])
-  });
- 
-
-  // function post(postList) {
-  //   return postList.map((post) => {
-    // returns an array of tags divs from postsList object
-  //     const tags = post.tags.map((tag) => {
-  //       return <div>{tag}</div>
-  //     })
-    // returns a html parsed div
-  //     return (
-  //       <div className="post">
-  //         <div className="prof">
-  //           <div>
-  //             <img src={post.user.profPic}></img>
-  //           </div>
-  //           <div>
-  //             <h3>-{post.user.username}</h3>
-  //             <h4>{post.title}</h4>
-  //             <div className="tags">{tags}</div>
-  //           </div>
-  //         </div>
-  //         {post.image ? <img src={post.image}></img> : ""}
-  //         <p>{post.description}</p>
-  //       </div>
-  //     )
-  //   })
-  // }
-
-  const user = AuthService.getCurrentUser();
+  }
 
   return (
     <div className="posts">
       <h1>POSTS</h1>
+
       {/* Create Post button | Accessed via log-in*/}
-  
       {user &&
         <button>
           <NavLink className="createPost" to="/createPost"> + Post</NavLink>
         </button>
       }
-      {postList &&
-        <div> { postList} </div>
-      }
-
+      
+      {/* DisplaysPosts */}
+      <div className="displayPosts">
+        {generatePosts()}
+      </div>
+      
+      {/* PlaceholderPosts */}
       <div className="blurbs">
           <img className="mentorpost" src={Mentorpost} alt=""/>
           <img className="financialpost" src={Financialpost} alt=""/>
           <img className="reviewspost" src={Reviewspost} alt=""/>
       </div>
 
-      {/* <div className="displayPosts">{post(examplePostData)}</div> */}
     </div>
   )
 }
