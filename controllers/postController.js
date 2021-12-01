@@ -84,10 +84,13 @@ exports.delete = (req, res) => {
 // Retrieve all posts from the database.
 exports.findAll = async (req, res) => {
   try{
-    const posts = await Post.find();
+    const posts = await Post.find({});
     res.json(posts);
+    console.log("POSTS")
+    console.log(posts)
   } catch(err){
-    consosle.error(err);
+    //!
+    console.error(err);
     res.status(500).send();
   }
 };

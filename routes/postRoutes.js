@@ -19,7 +19,7 @@ module.exports = function(app) {
   app.get("/post/:id", [authJwt.verifyToken], posts.findOne);
 
   // GET route that returns all posts
-  app.get("/post", [authJwt.verifyToken], posts.findAll);
+  app.get("/post",  posts.findAll);
 
   // PUT route that updates a post
   app.put("/post/update/:id", [authJwt.verifyToken], posts.update);

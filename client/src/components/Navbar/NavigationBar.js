@@ -1,5 +1,5 @@
 import React from "react"
-// import { NavLink } from "react-router-dom"
+import { Redirect } from "react-router-dom"
 import { Navbar, Container, Nav } from "react-bootstrap"
 import LoginModal from "./LoginModal"
 import "./navbar.css"
@@ -7,11 +7,19 @@ import Logo from '../../static/images/logo.png'
 import { Component } from "react"
 import AuthService from "../../services/auth-service";
 
+
 export default class NavigationBar extends Component{
   constructor(props) {
     super(props);
     this.user = AuthService.getCurrentUser();
+    this.logoutUser = this.logoutUser.bind(this);
 }
+logoutUser(){
+  AuthService.logout();
+  return (
+    <Redirect to="/" />
+  );
+};
 
   //function NavigationBar() {
   render(){
@@ -40,7 +48,7 @@ export default class NavigationBar extends Component{
               {this.user && <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>}
               {!this.user && <Nav.Link className="nav-item" href="/register">Register</Nav.Link>}
               {!this.user && <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>}
-              {!this.user && <Nav.Link className="nav-item" href="/logout">Logout</Nav.Link>}
+              {this.user && <Nav.Link className="nav-item" onClick={this.logoutUser}>Logout</Nav.Link>}
               {!this.user && <LoginModal/>}
             </Nav>
           </Navbar.Collapse>

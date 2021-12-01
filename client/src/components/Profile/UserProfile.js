@@ -1,11 +1,14 @@
 import React from 'react'
-import { NavLink } from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import { NavLink, Redirect } from "react-router-dom"
 import './userProfile.css'
 import Usericon from '../../static/images/usericon.png'
 import AuthService from "../../services/auth-service";
 
+
 function UserProfile() {
   const user = AuthService.getCurrentUser();
+
   const profile = (
       <div className='userProfile'>
         <div className="prof">
@@ -80,7 +83,8 @@ function UserProfile() {
 
       </div>
     )
-  const error = <div>ERROR: Must be logged in to view this page</div>
+  const error = <div><Redirect to="/" />ERROR: Must be logged in to view this page</div>
+  
   //Refactor this into state (convert this into a export class, refer to LoginModals.js)
   return user ? profile : error
 }
