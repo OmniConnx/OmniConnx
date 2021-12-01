@@ -6,6 +6,7 @@ import Financialpost from '../../static/images/financial-post.png'
 import Reviewspost from '../../static/images/reviews-post.png'
 import AuthService from "../../services/auth-service";
 import postsService from "../../services/postsService"
+import UserService from "../../services/user-service"
 
 function Posts() {
   const user = AuthService.getCurrentUser()
@@ -16,15 +17,18 @@ function Posts() {
       // console.log(posts.data)
     })
   })
-  
   // Gets post from database and returns parsed jsx elements
   const generatePosts = () => {
+
     const postList = data.map(e => {
+      //Testing getting author name in progress!
+      console.log(UserService.getUserID(e.author))
+
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
             <h1>{e.title}</h1>
-            <p>{e.author}</p>
+            <p>{UserService.getUserID(e.author).username}</p>
           </div>
           <p>{e.content}</p>
         </div>

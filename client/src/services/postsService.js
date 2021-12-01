@@ -43,7 +43,7 @@ class postsService {
     }
     //getPosts()
 
-    getPostID() {}
+  
 }
 
 export default new postsService();
