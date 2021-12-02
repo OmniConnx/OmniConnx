@@ -31,7 +31,25 @@ class postsService {
     }
 
     //updates a specific post
-    updatePost(title, body, userid, postid) {}
+    updatePost(title, body, accessToken, postid) {
+        axios.put("/update/"+ postid, {
+            title,
+            body
+        },
+        {
+            headers: {
+                'x-access-token': accessToken
+            }
+        })
+        .then(response => {
+            if (response.status == '200') {
+                console.log('Post was successfully submitted')
+            }
+        })
+        .catch(error => {
+        console.log(error);
+        });
+    }
 
     //deletes a specific post 
     deletePost(postid) {}
@@ -42,6 +60,7 @@ class postsService {
         return axios.get(API_URL)
     }
     //getPosts()
+
 
   
 }

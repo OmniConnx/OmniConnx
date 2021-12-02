@@ -20,6 +20,8 @@ module.exports = function(app) {
   // GET route that returns all users
   app.get("/user", [ authJwt.verifyToken ], users.findAll);
 
+  app.get("/user/:id", users.findOne);
+
   // PUT route that updates a user
   app.put("/user/update/:id", users.update);
 
