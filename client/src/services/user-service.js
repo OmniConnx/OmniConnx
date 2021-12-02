@@ -21,7 +21,6 @@ class UserService {
     return axios.get(API_URL + 'user/'+ id)
   }
 
-
 }
 
 export default new UserService();

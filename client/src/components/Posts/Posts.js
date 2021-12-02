@@ -13,7 +13,18 @@ function Posts() {
   const [data, setData] = useState(null)
   useEffect(() => {
     postsService.getPosts().then(posts => {
-      setData(posts.data)
+      var ourData =posts.data
+      ourData.forEach(element => {
+        const username = UserService.getUserID(element.author)
+        username.then(element =>{
+          element.author = username
+          console.log(element.author)
+          
+        })
+
+      });
+      setData(ourData)
+      //for each create new promise
       // console.log(posts.data)
     })
   })
@@ -21,14 +32,13 @@ function Posts() {
   const generatePosts = () => {
 
     const postList = data.map(e => {
-      //Testing getting author name in progress!
-      console.log(UserService.getUserID(e.author))
+      //Testing getting author name
 
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
             <h1>{e.title}</h1>
-            <p>{UserService.getUserID(e.author).username}</p>
+            <h1>{e.author}</h1>
           </div>
           <p>{e.content}</p>
         </div>
