@@ -13,27 +13,21 @@ function Posts() {
   const [data, setData] = useState(null)
   useEffect(() => {
     postsService.getPosts().then(posts => {
-      var ourData =posts.data
-      ourData.forEach(element => {
+      var postData = posts.data
+      const usernamePromise = postData.map(element => {
         const username = UserService.getUserID(element.author)
-        username.then(element =>{
+        
+        return username.then(element => {
+          console.log(username)
           element.author = username
-          console.log(element.author)
-          
         })
-
       });
-      setData(ourData)
-      //for each create new promise
-      // console.log(posts.data)
+      Promise.all(usernamePromise).then(() => setData(postData))
     })
   })
   // Gets post from database and returns parsed jsx elements
   const generatePosts = () => {
-
-    const postList = data.map(e => {
-      //Testing getting author name
-
+    return data.map(e => {
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
@@ -44,7 +38,6 @@ function Posts() {
         </div>
       )
     })
-    return postList
   }
 
   return (
