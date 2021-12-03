@@ -1,7 +1,11 @@
 
 const { authJwt } = require("../middlewares");
 
+<<<<<<< HEAD
 const skill = require("../controllers/skillController.js");
+=======
+const skills = require("../controllers/skillsController.js");
+>>>>>>> 96da2a2... Addition of skill model and routes, singular
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -17,6 +21,7 @@ module.exports = function(app) {
 
   //FOR TESTING PURPOSES ONLY
   // GET route that returns single post with id
+<<<<<<< HEAD
   // app.get("/skill/:id", [authJwt.verifyToken], skill.findOne);
 
   // // GET route that returns all posts
@@ -30,5 +35,20 @@ module.exports = function(app) {
 
   // // Route that deletes all posts
   // app.delete("/skill/delete_all", [authJwt.verifyToken], skill.deleteAll);
+=======
+  app.get("/skill/:id", [authJwt.verifyToken], skill.findOne);
+
+  // GET route that returns all posts
+  app.get("/skill",  skill.findAll);
+
+  // PUT route that updates a post
+  app.put("/skill/update/:id", [authJwt.verifyToken], skill.update);
+
+  // Route that deletes a post 
+  app.delete("/skill/delete/:id", [authJwt.verifyToken], skill.delete);
+
+  // Route that deletes all posts
+  app.delete("/skill/delete_all", [authJwt.verifyToken], skill.deleteAll);
+>>>>>>> 96da2a2... Addition of skill model and routes, singular
 };
     
