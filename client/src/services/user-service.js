@@ -21,6 +21,26 @@ class UserService {
     return axios.get(API_URL + 'user/'+ id)
   }
 
+  updateUser(username, skills, accessToken, userid) {
+      axios.put("/update/"+ userid, {
+          username,
+          skills
+      },
+      {
+          headers: {
+              'x-access-token': accessToken
+          }
+      })
+      .then(response => {
+          if (response.status == '200') {
+              console.log('Post was successfully submitted')
+          }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
 }
 
 export default new UserService();

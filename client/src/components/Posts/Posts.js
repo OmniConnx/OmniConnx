@@ -33,6 +33,7 @@ function Posts() {
           <div className='postHead'>
             <h1>{e.title}</h1>
             <h1>{e.author}</h1>
+            <h1>{e.username}</h1>
           </div>
           <p>{e.content}</p>
         </div>
