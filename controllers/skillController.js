@@ -1,4 +1,3 @@
-
 const db = require("../models");
 const Skill = db.skills;
 // Create a skill with no relationship to user or post at all
@@ -20,4 +19,14 @@ exports.create = (req, res) => {
               message: err.message || "Some error occurred while creating the Skill."
           });
       });
-  };;
+  };
+  exports.update = (req, res) => {
+      if (!req.body) {
+          return res.status(400).send({
+              message: "Skill content can not be empty"
+          })
+      };
+      
+
+  };
+
