@@ -1,6 +1,7 @@
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
+const Skill = db.skills;
 
 
 // Create a post and save it with the user
