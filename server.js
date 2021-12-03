@@ -40,6 +40,7 @@ app.get('/', function (req,res) {
 
 require("./routes/userRoutes")(app);
 require("./routes/postRoutes")(app);
+require("./routes/skillRoutes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080

@@ -1,24 +1,23 @@
-// Create a post and save it with the user
+
+const db = require("../models");
+const Skill = db.skills;
+// Create a skill with no relationship to user or post at all
 exports.create = (req, res) => { 
-    var skill = new Skill(req.body);
-    skill.author = req.userId;
-  
-    if (req.userId) { var skill = new Skill(req.body); 
-      skill.author = req.userId;
-      skill
+    if(!req.body.skillName) {
+        res.status(400).send({ message: "Content can not be empty!"});
+        return;
+    }
+    const skill = new Skill ({
+        skillName: req.body.skillName,
+    })
+    skill
       .save()
-      .then(skill => {
-          return User.findById(req.userId);
-      })
-      .then(user => {
-          user.skills.unshift(skill);
-          user.save();
-          res.redirect('/user');
+      .then(data => {
+          res.send(data);
       })
       .catch(err => {
-          console.log(err.message);
+          res.status(500).send({
+              message: err.message || "Some error occurred while creating the Skill."
+          });
       });
-      } else {
-        return res.status(401); 
-      }
-  };
+  };;

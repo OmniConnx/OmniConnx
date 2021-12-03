@@ -6,6 +6,7 @@ const Skill = db.skills;
 
 // Create a post and save it with the user
 exports.create = (req, res) => { 
+  
   var post = new Post(req.body);
   post.author = req.userId;
 
