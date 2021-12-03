@@ -14,6 +14,7 @@ module.exports = mongoose => {
       // calendar_id: { type: String, required: true },
       // CV_ID: { type: Number, required: true },
       posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
+      skills: [{type: mongoose.Schema.Types.ObjectId, ref: "Skill",}]
     },
     { timestamps: { createdAt: "created_at" } }
   

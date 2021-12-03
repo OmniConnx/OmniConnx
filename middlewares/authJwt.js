@@ -1,4 +1,4 @@
-  const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const config = require("../data/authConfig.js")
 
 // Function that checks for token(checks if you are signed in)
