@@ -1,7 +1,7 @@
 
 const { authJwt } = require("../middlewares");
 
-const skills = require("../controllers/skillsController.js");
+const skill = require("../controllers/skillController.js");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -17,18 +17,18 @@ module.exports = function(app) {
 
   //FOR TESTING PURPOSES ONLY
   // GET route that returns single post with id
-  app.get("/skill/:id", [authJwt.verifyToken], skill.findOne);
+  // app.get("/skill/:id", [authJwt.verifyToken], skill.findOne);
 
-  // GET route that returns all posts
-  app.get("/skill",  skill.findAll);
+  // // GET route that returns all posts
+  // app.get("/skill",  skill.findAll);
 
-  // PUT route that updates a post
-  app.put("/skill/update/:id", [authJwt.verifyToken], skill.update);
+  // // PUT route that updates a post
+  // app.put("/skill/update/:id", [authJwt.verifyToken], skill.update);
 
-  // Route that deletes a post 
-  app.delete("/skill/delete/:id", [authJwt.verifyToken], skill.delete);
+  // // Route that deletes a post 
+  // app.delete("/skill/delete/:id", [authJwt.verifyToken], skill.delete);
 
-  // Route that deletes all posts
-  app.delete("/skill/delete_all", [authJwt.verifyToken], skill.deleteAll);
+  // // Route that deletes all posts
+  // app.delete("/skill/delete_all", [authJwt.verifyToken], skill.deleteAll);
 };
     
