@@ -4,20 +4,23 @@ const User = db.users;
 const Skill = db.skills;
 
 
-// Create a post and save it with the user
 exports.create = (req, res) => { 
   
-  var post = new Post(req.body);
-  post.author = req.userId;
-
-  if (req.userId) { var post = new Post(req.body); 
-    post.author = req.userId;
-    post
-    .save()
-    .then(post => {
-        return User.findById(req.userId);
+  if (req.userId) {
+    
+    var skill = Skill.findOne({skillName: req.body.skills}).then(skill => {
+      var post = new Post(req.body);
+      post.author = req.userId;
+      post.skills.unshift(skill);
+      post
+      .save()
     })
-    .then(user => {
+      .then(post => {
+        skill.posts.unshift(post); 
+        skill.save() 
+          return User.findById(req.userId);
+    })
+      .then(user => {
         user.posts.unshift(post);
         user.save();
         res.redirect('/user');
@@ -25,10 +28,41 @@ exports.create = (req, res) => {
     .catch(err => {
         console.log(err.message);
     });
-    } else {
+  } else {
       return res.status(401); 
-    }
+    } 
 };
+
+
+
+
+
+
+// Create a post and save it with the user
+// exports.create = (req, res) => { 
+  
+//   var post = new Post(req.body);
+//   post.author = req.userId;
+
+//   if (req.userId) { var post = new Post(req.body); 
+//     post.author = req.userId;
+//     post
+//     .save()
+//     .then(post => {
+//         return User.findById(req.userId);
+//     })
+//     .then(user => {
+//         user.posts.unshift(post);
+//         user.save();
+//         res.redirect('/user');
+//     })
+//     .catch(err => {
+//         console.log(err.message);
+//     });
+//     } else {
+//       return res.status(401); 
+//     }
+// };
 
 
 

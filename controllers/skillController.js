@@ -1,5 +1,7 @@
 const db = require("../models");
 const Skill = db.skills;
+const User = db.users;
+const Post = db.posts;
 // Create a skill with no relationship to user or post at all
 exports.create = (req, res) => { 
     if(!req.body.skillName) {
@@ -20,13 +22,13 @@ exports.create = (req, res) => {
           });
       });
   };
-  exports.update = (req, res) => {
-      if (!req.body) {
-          return res.status(400).send({
-              message: "Skill content can not be empty"
-          })
-      };
+//   exports.update = (req, res) => {
+//       // if there is a post id then we will be updating the post with the new skill
+//       //and if it does then we will be updating the user with the new skill
       
 
-  };
+//       };
+      
+
+
 
