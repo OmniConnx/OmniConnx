@@ -1,3 +1,4 @@
+const { Console } = require("console");
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
@@ -5,65 +6,53 @@ const Skill = db.skills;
 
 
 exports.create = (req, res) => { 
-  
-  if (req.userId) {
-    
-    var skill = Skill.findOne({skillName: req.body.skills}).then(skill => {
-      var post = new Post(req.body);
-      post.author = req.userId;
-      post.skills.unshift(skill);
-      post
-      .save()
+  var post = new Post(req.body);
+  post.author = req.userId;
+  var skillArray = []
+  if (req.userId) { 
+    for (let i = 0; i < req.body.skills.length; i++) {
+      // req.body.skills[i].userId = req.userId;
+      var existingSkill = Skill.find({skillName: req.body.skills[i]})
+      existingSkill.then(skill => {
+        if (skill) {
+          console.log(skill)
+          skillArray.push(skill)
+        }
+
+        console.log("skillID")
+        console.log(skill._id)
+        console.log(skill["_id"])
+        post.skillsList.unshift(skill.id);
+      if ( i == req.body.skills.length - 1) {
+        
+        post
+        .save()
+        .then(post => {
+          // console.log(post)
+          for (let i = 0; i < skillArray.length; i++) {
+            skillArray[i].posts.unshift(post);
+            skillArray[i].save()
+          
+          }
+            return User.findById(req.userId);
+       })
+        .then(user => {
+           console.log('userhere')
+           console.log(user)
+           user.posts.unshift(post);
+           user.save();
+           res.redirect('/post');
+        })
+      .catch(err => {
+          console.log(err.message);
+      });
+      }
     })
-      .then(post => {
-        skill.posts.unshift(post); 
-        skill.save() 
-          return User.findById(req.userId);
-    })
-      .then(user => {
-        user.posts.unshift(post);
-        user.save();
-        res.redirect('/user');
-    })
-    .catch(err => {
-        console.log(err.message);
-    });
+  }
   } else {
       return res.status(401); 
     } 
 };
-
-
-
-
-
-
-// Create a post and save it with the user
-// exports.create = (req, res) => { 
-  
-//   var post = new Post(req.body);
-//   post.author = req.userId;
-
-//   if (req.userId) { var post = new Post(req.body); 
-//     post.author = req.userId;
-//     post
-//     .save()
-//     .then(post => {
-//         return User.findById(req.userId);
-//     })
-//     .then(user => {
-//         user.posts.unshift(post);
-//         user.save();
-//         res.redirect('/user');
-//     })
-//     .catch(err => {
-//         console.log(err.message);
-//     });
-//     } else {
-//       return res.status(401); 
-//     }
-// };
-
 
 
 // Update a post by the id in the request
