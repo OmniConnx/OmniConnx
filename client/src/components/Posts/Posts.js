@@ -1,74 +1,74 @@
-import { React, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import "./Posts.css"
-import Mentorpost from '../../static/images/mentor-post.png'
-import Financialpost from '../../static/images/financial-post.png'
-import Reviewspost from '../../static/images/reviews-post.png'
-import AuthService from "../../services/auth-service";
-import postsService from "../../services/postsService"
-import UserService from "../../services/user-service"
+import { React, useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import './Posts.css';
+import Mentorpost from '../../static/images/mentor-post.png';
+import Financialpost from '../../static/images/financial-post.png';
+import Reviewspost from '../../static/images/reviews-post.png';
+import AuthService from '../../services/auth-service';
+import postsService from '../../services/postsService';
+import UserService from '../../services/user-service';
 
 function Posts() {
-  const user = AuthService.getCurrentUser()
-  const [data, setData] = useState(null)
-  useEffect(() => {
-    postsService.getPosts().then(posts => {
-      var postData = posts.data
-      const usernamePromise = postData.map(element => {
-        const username = UserService.getUserID(element.author)
-        
-        return username.then(element => {
-          console.log(username)
-          element.author = username
-        })
-      });
-      Promise.all(usernamePromise).then(() => setData(postData))
-    })
-  })
-  // Gets post from database and returns parsed jsx elements
-  const generatePosts = () => {
-    return data.map(e => {
-      return(
-        <div className = 'blurbs'>
-          <div className='postHead'>
-            <h1>{e.title}</h1>
-            <h1>{e.author}</h1>
-            <h1>{e.username}</h1>
-          </div>
-          <p>{e.content}</p>
-        </div>
-      )
-    })
-  }
+	const user = AuthService.getCurrentUser();
+	const [data, setData] = useState(null);
+	useEffect(() => {
+		postsService.getPosts().then((posts) => {
+			var postData = posts.data;
+			const usernamePromise = postData.map((element) => {
+				const username = UserService.getUserID(element.author);
 
-  return (
-    <div className="posts">
-      <h1>POSTS</h1>
+				return username.then((element) => {
+					console.log(username);
+					element.author = username;
+				});
+			});
+			Promise.all(usernamePromise).then(() => setData(postData));
+		});
+	});
+	// Gets post from database and returns parsed jsx elements
+	const generatePosts = () => {
+		return data.map((e) => {
+			return (
+				<div className="blurbs">
+					<div className="postHead">
+						<h1>{e.title}</h1>
+						<h1>{e.author}</h1>
+						<h1>{e.username}</h1>
+					</div>
+					<p>{e.content}</p>
+				</div>
+			);
+		});
+	};
 
-      {/* Create Post button | Accessed via log-in*/}
-      {user &&
-        <button>
-          <NavLink className="createPost" to="/createPost"> + Post</NavLink>
-        </button>
-      }
-      
-      {/* DisplaysPosts */}
-      <div className="displayPosts">
-        {data ? generatePosts() : 'loading'}
-      </div>
-      
-      {/* PlaceholderPosts */}
-      <div className="blurbs">
-          <img className="mentorpost" src={Mentorpost} alt=""/>
-          <img className="financialpost" src={Financialpost} alt=""/>
-          <img className="reviewspost" src={Reviewspost} alt=""/>
-      </div>
+	return (
+		<div className="posts">
+			<h1>POSTS</h1>
 
-    </div>
-  )
+			{/* Create Post button | Accessed via log-in*/}
+			{user && (
+				<button>
+					<NavLink className="createPost" to="/createPost">
+						{' '}
+						+ Post
+					</NavLink>
+				</button>
+			)}
+
+			{/* DisplaysPosts */}
+			<div className="displayPosts">{data ? generatePosts() : 'loading'}</div>
+
+			{/* PlaceholderPosts */}
+			<div className="blurbs">
+				<img className="mentorpost" src={Mentorpost} alt="" />
+				<img className="financialpost" src={Financialpost} alt="" />
+				<img className="reviewspost" src={Reviewspost} alt="" />
+			</div>
+		</div>
+	);
 }
 
-export default Posts
+export default Posts;
 
 // !!!DO NOT UNCOMMENT THIS!!!
 // <button onClick={post({

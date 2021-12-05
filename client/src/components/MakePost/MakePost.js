@@ -1,12 +1,17 @@
 import React, { useDropzone } from 'react-dropzone';
 import { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import './MakePost.css';
+import postsService from '../../services/postsService';
+import authService from '../../services/auth-service';
 
 // Redux imports
 // import { useDispatch } from 'react-redux';
 // import { submitPost } from '../../reduxcomps/actions';
 
 function MakePost() {
+	// Redirect helper variable
+	let history = useHistory();
 	const [files, setFiles] = useState([]);
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: 'image/*',
@@ -37,6 +42,16 @@ function MakePost() {
 	const [descs, setDesc] = useState('');
 	const [tagTemp, setTempTag] = useState('');
 	const [tagsSt, setTag] = useState([]);
+
+	// submitPost method
+
+	const submitPost = () => {
+		// Auth service
+
+		const accessToken = authService.getCurrentUser().accessToken;
+		postsService.submitPost(titles, descs, accessToken);
+		history.push('/posts');
+	};
 
 	return (
 		<div className="main">
@@ -108,16 +123,24 @@ function MakePost() {
 					<button className="button-hover" type="submit">
 						Cancel
 					</button>
+					{/* <button className="button-hover">
+						<Link
+							style={{ textDecoration: 'none', color: 'white' }}
+							value="Submit"
+							to={`/posts`}
+							onClick={() => {
+								submitPost();
+							}}
+						>
+							Submit
+						</Link>
+					</button> */}
+
 					<button
 						className="button-hover"
-						onClick={(e) => {
-							const post = {
-								user: `placeholder`,
-								tags: tagsSt,
-								image: images,
-								title: titles,
-								description: descs,
-							};
+						value="Submit"
+						onClick={() => {
+							submitPost();
 						}}
 					>
 						Submit
