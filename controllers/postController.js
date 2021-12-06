@@ -1,44 +1,43 @@
 const { Console } = require("console");
+const { resourceUsage } = require("process");
+const { skills } = require("../models");
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
 const Skill = db.skills;
 
 
-exports.create = (req, res) => { 
+exports.create =  (req, res) => { 
   var post = new Post(req.body);
   post.author = req.userId;
   var skillArray = []
   if (req.userId) { 
     for (let i = 0; i < req.body.skills.length; i++) {
       // req.body.skills[i].userId = req.userId;
-      var existingSkill = Skill.find({skillName: req.body.skills[i]})
+      console.log(req.body.skills[i])
+      var existingSkill = Skill.findOne({skillName: req.body.skills[i]})
+      console.log('HELLOOO')
       existingSkill.then(skill => {
-        if (skill) {
-          console.log(skill)
+        if (!skill) {
+          res.status(404).send({
+            message: `Doesnt exist`
+          });
+        } else {
           skillArray.push(skill)
+          console.log(skill)
         }
-
-        console.log("skillID")
-        console.log(skill._id)
-        console.log(skill["_id"])
         post.skillsList.unshift(skill.id);
-      if ( i == req.body.skills.length - 1) {
-        
+      if ( i == req.body.skills.length - 1) {  
         post
         .save()
         .then(post => {
-          // console.log(post)
           for (let i = 0; i < skillArray.length; i++) {
             skillArray[i].posts.unshift(post);
             skillArray[i].save()
-          
           }
             return User.findById(req.userId);
        })
         .then(user => {
-           console.log('userhere')
-           console.log(user)
            user.posts.unshift(post);
            user.save();
            res.redirect('/post');

@@ -4,7 +4,7 @@ const User = db.users;
 const Post = db.posts;
 // Create a skill with no relationship to user or post at all
 exports.create = (req, res) => { 
-    // skillsArr = ["Neurosurgery", "Pediatrics", "Cardiologist"]
+    skillsArr = ["Neurosurgery", "Pediatrics", "Cardiologist"]
 
 //     for (i=0;i<skillsArr.length;i++){
 //         const skill = new Skill ({
@@ -38,6 +38,19 @@ exports.create = (req, res) => {
               message: err.message || "Some error occurred while creating the Skill."
           });
       });
+  };
+
+  exports.findAll = async (req, res) => {
+    try{
+      const skills = await Skill.find({});
+      res.json(skills);
+      console.log("Skills")
+      console.log(skills)
+    } catch(err){
+      //!
+      console.error(err);
+      res.status(500).send();
+    }
   };
 //   exports.update = (req, res) => {
 //       // if there is a post id then we will be updating the post with the new skill

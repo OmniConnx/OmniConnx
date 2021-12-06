@@ -20,7 +20,7 @@ module.exports = function(app) {
   // app.get("/skill/:id", [authJwt.verifyToken], skill.findOne);
 
   // // GET route that returns all posts
-  // app.get("/skill",  skill.findAll);
+  app.get("/skill",  skill.findAll);
 
   // // PUT route that updates a post
   // app.put("/skill/update/:id", [authJwt.verifyToken], skill.update);
