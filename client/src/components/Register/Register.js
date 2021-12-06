@@ -2,7 +2,8 @@ import React, { Component } from "react"
 import { Form, Button, Nav, Modal } from "react-bootstrap"
 import authService from "../../services/auth-service"
 
-class Login extends Component {
+// page for registering a user account
+class Register extends Component {
   state = {
     isOpen: false,
   }
@@ -14,42 +15,46 @@ class Login extends Component {
     super(props)
 
     // create react references to username and password input elements
-    this.loginUsername = React.createRef()
-    this.loginPassword = React.createRef()
+    this.registerUsername = React.createRef()
+    this.registerPassword = React.createRef()
 
-    // declare function to login user on submit
-    this.loginUser = this.loginUser.bind(this)
+    // declare function to register user on submit
+    this.registerUser = this.registerUser.bind(this)
   }
+
   // takes current values of inputted username and password and submits it to the backend through auth-services
-  loginUser() {
-    authService.login(this.loginUsername.current.value, this.loginPassword.current.value)
-    console.log(
-      `Username: ${this.loginUsername.current.value} \nPassword: ${this.loginPassword.current.value}`
-    )
+  registerUser() {
+    const username = this.registerUsername.current.value
+    const password = this.registerPassword.current.value
+    authService.register(username, password)
+    console.log(`Username: ${username} \nPassword: ${password}`)
   }
 
   render() {
     return (
       <>
         <Nav.Link className="nav-item" onClick={this.openModal}>
-          Login
+          Register
         </Nav.Link>
-
         <Modal show={this.state.isOpen} onHide={this.closeModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
+            <Modal.Title>Register</Modal.Title>
           </Modal.Header>
-          <Form onSubmit={this.loginUser}>
+          <Form onSubmit={this.registerUser}>
             <Modal.Body>
               <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Username</Form.Label>
-                <Form.Control ref={this.loginUsername} type="text" placeholder="Enter username" />
+                <Form.Control
+                  ref={this.registerUsername}
+                  type="text"
+                  placeholder="Enter username"
+                />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                  ref={this.loginPassword}
+                  ref={this.registerPassword}
                   type="password"
                   placeholder="Enter password"
                 />
@@ -59,7 +64,7 @@ class Login extends Component {
               <Button variant="secondary" onClick={this.closeModal}>
                 Close
               </Button>
-              <Button variant="primary" type="submit" onClick={this.loginUser}>
+              <Button variant="primary" type="submit" onClick={this.registerUser}>
                 Submit
               </Button>
             </Modal.Footer>
@@ -70,4 +75,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default Register

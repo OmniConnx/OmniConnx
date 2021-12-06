@@ -8,7 +8,6 @@ import Landing from "./components/Landing/Landing"
 import UserProfile from "./components/Profile/UserProfile"
 import Posts from "./components/Posts/Posts"
 import createPost from "./components/Posts/createPost"
-import Register from "./components/Register/RegisterUser"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -59,7 +58,6 @@ function App() {
           <Route path="/prof" component={UserProfile} />
           <Route path="/posts" component={Posts} />
           <Route path="/createPost" component={createPost} />
-          <Route path="/register" component={Register} />
         </Switch>
         <Footer />
       </div>

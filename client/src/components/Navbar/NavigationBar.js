@@ -2,6 +2,7 @@ import React from "react"
 import { Redirect } from "react-router-dom"
 import { Navbar, Container, Nav } from "react-bootstrap"
 import Login from "../Login/Login"
+import Register from "../Register/Register"
 import "./navbar.css"
 import Logo from "../../static/images/logo.png"
 import { Component } from "react"
@@ -49,11 +50,7 @@ export default class NavigationBar extends Component {
                   Profile
                 </Nav.Link>
               )}
-              {!this.user && (
-                <Nav.Link className="nav-item" href="/register">
-                  Register
-                </Nav.Link>
-              )}
+              {!this.user && <Register />}
               {!this.user && <Login />}
               {this.user && (
                 <Nav.Link className="nav-item" onClick={this.logoutUser}>
