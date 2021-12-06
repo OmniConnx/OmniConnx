@@ -1,28 +1,25 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 import { Navbar, Container, Nav } from "react-bootstrap"
-import LoginModal from "./LoginModal"
+import Login from "../Login/Login"
 import "./navbar.css"
-import Logo from '../../static/images/logo.png'
+import Logo from "../../static/images/logo.png"
 import { Component } from "react"
-import AuthService from "../../services/auth-service";
+import AuthService from "../../services/auth-service"
 
-
-export default class NavigationBar extends Component{
+export default class NavigationBar extends Component {
   constructor(props) {
-    super(props);
-    this.user = AuthService.getCurrentUser();
-    this.logoutUser = this.logoutUser.bind(this);
-}
-logoutUser(){
-  AuthService.logout();
-  return (
-    <Redirect to="/" />
-  );
-};
+    super(props)
+    this.user = AuthService.getCurrentUser()
+    this.logoutUser = this.logoutUser.bind(this)
+  }
+  logoutUser() {
+    AuthService.logout()
+    return <Redirect to="/" />
+  }
 
   //function NavigationBar() {
-  render(){
+  render() {
     return (
       <Navbar expand="lg" variant="light" className="navbar">
         <Container>
@@ -40,16 +37,29 @@ logoutUser(){
                 />
               </Navbar.Brand>
             </Nav>
-            
+
             {/* Links Section */}
             <Nav>
-              <Nav.Link className="nav-item" href="/posts">Posts</Nav.Link>
+              <Nav.Link className="nav-item" href="/posts">
+                Posts
+              </Nav.Link>
               {/* Conditional rendering of logged-in features */}
-              {this.user && <Nav.Link className="nav-item" href="/prof">Profile</Nav.Link>}
-              {!this.user && <Nav.Link className="nav-item" href="/register">Register</Nav.Link>}
-              {!this.user && <Nav.Link className="nav-item" href="/login">Login page</Nav.Link>}
-              {this.user && <Nav.Link className="nav-item" onClick={this.logoutUser}>Logout</Nav.Link>}
-              {!this.user && <LoginModal/>}
+              {this.user && (
+                <Nav.Link className="nav-item" href="/prof">
+                  Profile
+                </Nav.Link>
+              )}
+              {!this.user && (
+                <Nav.Link className="nav-item" href="/register">
+                  Register
+                </Nav.Link>
+              )}
+              {!this.user && <Login />}
+              {this.user && (
+                <Nav.Link className="nav-item" onClick={this.logoutUser}>
+                  Logout
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
