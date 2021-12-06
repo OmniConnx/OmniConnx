@@ -1,5 +1,5 @@
 import "./App.css"
-import { BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 //import { Switch, Route, Router } from "react-router-dom";
 
 import NavigationBar from "./components/Navbar/NavigationBar"
@@ -9,7 +9,6 @@ import UserProfile from "./components/Profile/UserProfile"
 import Posts from "./components/Posts/Posts"
 import createPost from "./components/Posts/createPost"
 import Register from "./components/Register/RegisterUser"
-import Login from "./components/Login/Login"
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -53,18 +52,17 @@ store.subscribe(() => {
 function App() {
   return (
     <Provider store={store}>
-        <div className="App">
-          <Route component={NavigationBar}/>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route path="/prof" component={UserProfile} />
-            <Route path="/posts" component={Posts} />
-            <Route path="/createPost" component={createPost} />
-            <Route path="/register" component={Register}/>
-            <Route path="/login" component={Login}/>
-          </Switch>
-          <Footer />
-        </div>
+      <div className="App">
+        <Route component={NavigationBar} />
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route path="/prof" component={UserProfile} />
+          <Route path="/posts" component={Posts} />
+          <Route path="/createPost" component={createPost} />
+          <Route path="/register" component={Register} />
+        </Switch>
+        <Footer />
+      </div>
     </Provider>
   )
 }
