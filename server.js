@@ -17,6 +17,7 @@ app.use(express.static(path));
 
 //database
 const db = require("./models/index")
+const Skill = db.skills
 db.mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING || db.url, {
     useNewUrlParser: true,
@@ -33,6 +34,31 @@ db.mongoose
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("./client/build"))
 }
+
+// Creates skills once when server starts
+skillsArr = ["zzz", "888", "999"]
+
+var testpost = false
+for (i=0;i<skillsArr.length;i++){
+  // var skillexists = Skill.findOne({skillName: skillsArr[i]})
+  // skillexists.then( result => {
+    // if (result == null){
+  if (testpost == false){
+  var newSkill = new Skill({skillName: skillsArr[i]})
+    newSkill.save()
+    // }
+    // console.log('skillexists')
+    // console.log(result)
+  }
+
+  // if (skillexists == null){
+  //   var newSkill = new Skill({skillName: skillsArr[i]})
+  //   newSkill.save()
+  // }
+}
+testpost = true
+
+
 
 app.get('/', function (req,res) {
   res.sendFile(path + "index.html");

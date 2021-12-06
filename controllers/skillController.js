@@ -4,7 +4,7 @@ const User = db.users;
 const Post = db.posts;
 // Create a skill with no relationship to user or post at all
 exports.create = (req, res) => { 
-    skillsArr = ["Neurosurgery", "Pediatrics", "Cardiologist"]
+    // skillsArr = ["Neurosurgery", "Pediatrics", "Cardiologist"]
 
 //     for (i=0;i<skillsArr.length;i++){
 //         const skill = new Skill ({
