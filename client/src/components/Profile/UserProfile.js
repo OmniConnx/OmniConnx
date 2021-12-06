@@ -8,23 +8,29 @@ import skillsService from "../../services/skill-service"
 
 //do get all request
 
-/*
+
 var select = document.getElementById("selectSkill");
 var skillsArr = [];
 
 //const user = AuthService.getCurrentUser()
 //const [data, setData] = useState(null)
+/*
 useEffect(() => {
-  var skills = getSkills()
+  getSkills().then(skills) =>
+    setData(skills.data)
+  })
 
-  for(var i = 0; i < skills.length; i++) {
-    var opt = skills[i];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    select.appendChild(el);
-  }
+})
 
+const skillsArr = data.map(e => {
+
+//for(var i = 0; i < skills.length; i++) {
+  var opt = e.skillName;
+  var el = document.createElement("option");
+  el.textContent = opt;
+  el.value = opt;
+  select.appendChild(el);
+//}
 })
 
 function getSelection(){
@@ -33,9 +39,8 @@ function getSelection(){
   for(var i = 0; i < skillsArr.length; i++){
     if (skillsArr[i] == select.value){
       
-      updateSkill(skillsArr[i].data.skill, user, skillsArr[i].data.id)
+      updateUser(skillsArr[i].data.skill, user, skillsArr[i].data.id)
       //Removes selected skill from list
-      skillsArr.splice(i,1)
     }
   }
 

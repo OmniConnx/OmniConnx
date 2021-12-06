@@ -18,7 +18,6 @@ function Posts() {
         const username = UserService.getUserID(element.author)
         
         return username.then(element => {
-          console.log(username)
           element.author = username
         })
       });
@@ -26,8 +25,12 @@ function Posts() {
     })
   })
   // Gets post from database and returns parsed jsx elements
+  //deletePost(e._id)          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
+  //          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
+
   const generatePosts = () => {
     return data.map(e => {
+      //console.log(e.author)
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
@@ -36,9 +39,11 @@ function Posts() {
             <h1>{e.username}</h1>
           </div>
           <p>{e.content}</p>
+   
         </div>
       )
     })
+
   }
 
   return (

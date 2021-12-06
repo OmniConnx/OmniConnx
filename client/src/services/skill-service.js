@@ -10,9 +10,9 @@ class skillsService {
         return axios.get(API_URL)
     }
 
-    updateSkill(name, users, skillid) {
+    updateUserSkill(skillName, users, skillid) {
         axios.put("/update/"+ skillid, {
-            name,
+            skillName,
             users
         },
         {
@@ -22,7 +22,7 @@ class skillsService {
         })
         .then(response => {
             if (response.status == '200') {
-                console.log('Post was successfully submitted')
+                console.log('Skill was successfully submitted')
             }
         })
         .catch(error => {

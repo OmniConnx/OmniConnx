@@ -2,6 +2,7 @@ const db = require("../models");
 const Skill = db.skills;
 const User = db.users;
 const Post = db.posts;
+
 // Create a skill with no relationship to user or post at all
 exports.create = (req, res) => { 
     // skillsArr = ["Neurosurgery", "Pediatrics", "Cardiologist"]
