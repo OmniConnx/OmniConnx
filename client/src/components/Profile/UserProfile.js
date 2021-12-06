@@ -4,7 +4,48 @@ import { NavLink, Redirect } from "react-router-dom"
 import './userProfile.css'
 import Usericon from '../../static/images/usericon.png'
 import AuthService from "../../services/auth-service";
+import skillsService from "../../services/skill-service"
 
+//do get all request
+
+
+var select = document.getElementById("selectSkill");
+var skillsArr = [];
+
+//const user = AuthService.getCurrentUser()
+//const [data, setData] = useState(null)
+/*
+useEffect(() => {
+  getSkills().then(skills) =>
+    setData(skills.data)
+  })
+
+})
+
+const skillsArr = data.map(e => {
+
+//for(var i = 0; i < skills.length; i++) {
+  var opt = e.skillName;
+  var el = document.createElement("option");
+  el.textContent = opt;
+  el.value = opt;
+  select.appendChild(el);
+//}
+})
+
+function getSelection(){
+  const user = AuthService.getCurrentUser();
+
+  for(var i = 0; i < skillsArr.length; i++){
+    if (skillsArr[i] == select.value){
+      
+      updateUser(skillsArr[i].data.skill, user, skillsArr[i].data.id)
+      //Removes selected skill from list
+    }
+  }
+
+}
+*/
 
 function UserProfile() {
   const user = AuthService.getCurrentUser();
@@ -26,6 +67,11 @@ function UserProfile() {
           </div>
 
           {/* Skills feature */}
+          <select id="selectSkill">
+            <option>Select a Skill</option>
+        </select>
+        <button onClick="getSelection()"> Add Skill </button>
+
           <div className="skill">
             <div className="skillcard">
               <p>Skills Feature coming soon!</p>

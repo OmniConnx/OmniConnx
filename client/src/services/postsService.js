@@ -9,11 +9,12 @@ class postsService {
 
     // makes a POST req to backend to submit post into the database
     // takes in title and body of post as well as the author 
-    submitPost(title, content, accessToken) {
+    submitPost(title, content, accessToken, skills) {
         axios
         .post(`${API_URL}/create`, {
             title,
-            content
+            content,
+            skills
         },
         {
             headers: {
@@ -31,17 +32,43 @@ class postsService {
     }
 
     //updates a specific post
-    updatePost(title, body, userid, postid) {}
+    updatePost(title, body, accessToken, postid, skills) {
+        axios.put("/update/"+ postid, {
+            title,
+            body,
+            skills
+        },
+        {
+            headers: {
+                'x-access-token': accessToken
+            }
+        })
+        .then(response => {
+            if (response.status == '200') {
+                console.log('Post was successfully submitted')
+            }
+        })
+        .catch(error => {
+        console.log(error);
+        });
+    }
 
     //deletes a specific post 
-    deletePost(postid) {}
+    deletePost(postid) {
+        axios.delete(API_URL + '/delete/'+ postid)
+    }
 
     //retrieve a number of latest posts, if origin is 0 then get the latest posts submitted to database
     // if !origin === 0 then pass a userID to get latests posts from a specific user
     getPosts() {
         return axios.get(API_URL)
+        //.then(function(posts){
+          //  console.log(posts)
+        //}
+        //);
     }
     //getPosts()
+
 
   
 }

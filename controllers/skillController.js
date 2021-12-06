@@ -1,7 +1,6 @@
 const db = require("../models");
 const Skill = db.skills;
 
-
 // Create a single skill with no connection to a user or post at first
 exports.create = (req, res) => { 
     if(!req.body.skillName) {

@@ -13,28 +13,37 @@ function Posts() {
   const [data, setData] = useState(null)
   useEffect(() => {
     postsService.getPosts().then(posts => {
-      setData(posts.data)
-      // console.log(posts.data)
+      var postData = posts.data
+      const usernamePromise = postData.map(element => {
+        const username = UserService.getUserID(element.author)
+        
+        return username.then(element => {
+          element.author = username
+        })
+      });
+      Promise.all(usernamePromise).then(() => setData(postData))
     })
   })
   // Gets post from database and returns parsed jsx elements
+  //deletePost(e._id)          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
+  //          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
+
   const generatePosts = () => {
-
-    const postList = data.map(e => {
-      //Testing getting author name in progress!
-      console.log(UserService.getUserID(e.author))
-
+    return data.map(e => {
+      //console.log(e.author)
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
             <h1>{e.title}</h1>
-            <p>{UserService.getUserID(e.author).username}</p>
+            <h1>{e.author}</h1>
+            <h1>{e.username}</h1>
           </div>
           <p>{e.content}</p>
+   
         </div>
       )
     })
-    return postList
+
   }
 
   return (
