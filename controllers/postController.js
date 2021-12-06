@@ -1,6 +1,3 @@
-const { Console } = require("console");
-const { resourceUsage } = require("process");
-const { skills } = require("../models");
 const db = require("../models");
 const Post = db.posts;
 const User = db.users;
@@ -13,8 +10,6 @@ exports.create =  (req, res) => {
   var skillArray = []
   if (req.userId) { 
     for (let i = 0; i < req.body.skills.length; i++) {
-      // req.body.skills[i].userId = req.userId;
-      console.log(req.body.skills[i])
       var existingSkill = Skill.findOne({skillName: req.body.skills[i]})
       console.log('HELLOOO')
       existingSkill.then(skill => {
@@ -33,11 +28,15 @@ exports.create =  (req, res) => {
         .then(post => {
           for (let i = 0; i < skillArray.length; i++) {
             skillArray[i].posts.unshift(post);
+            skillArray[i].users.unshift(req.userId);
             skillArray[i].save()
           }
             return User.findById(req.userId);
        })
         .then(user => {
+          for ( let i = 0; i < skillArray.length; i++) {
+            user.skills.unshift(skillArray[i].id);
+          }
            user.posts.unshift(post);
            user.save();
            res.redirect('/post');

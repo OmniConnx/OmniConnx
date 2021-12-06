@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Creates skills once when server starts
-skillsArr = ["zzz", "888", "999"]
+skillsArr = ["Skill1", "Skill2", "Skill3"]
 
 var testpost = false
 for (i=0;i<skillsArr.length;i++){
