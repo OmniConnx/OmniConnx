@@ -20,34 +20,12 @@ function PostsComponent(){
 
         })
       })
-
-    //Creates an array of Refs from skills
-    //skill1 = createRef() 
-    //skill1.current.value = "skill name"
-
-    //Each skill in array get converted to new ref
-    //const skillsArr  =  skills.map((skill) => useRef(skill));
-
-    //Generate list of checkboxes from skills array, and get array of refs
-
-    //['skill1','skill2']
-    //make for loop to make vars from skillnames
-
-    //access each individual skill value
     
     const [checked, setChecked] = useState({})
 
- 
-
     const showSkills = () => {
         return data.map( skill => {
-            //console.log(checked)
-
-            //for(var i = 0; i < skillsArr.length; i++){
-            //append skill name to skill name arr top access thru index
-            //}                 <input type = "checkbox" value = {checkbox}></input>
-
-            // []  skill1
+         
             return (
                 //setChecked(e => !e)}
                 <div>
@@ -66,7 +44,37 @@ function PostsComponent(){
             
         })
     }
+    const submitPost = () => {
+        const title = postTitle
+        const content = postBody
+
+        const accessToken = authService.getCurrentUser().accessToken
     
+        if (checked != {}){
+            const skills = getSelection(checked)
+            console.log("UPDATE")
+            console.log(title, content, skills, accessToken)
+            postsService.submitPost(title, content, skills, accessToken)
+    
+    
+        }
+    }
+
+    // form for submitting a post
+    const getSelection = () => {
+        var outputSkills = []
+        //Get checkbox values of skills
+        for (const [key, value] of Object.entries(checked)){
+            outputSkills.push(key)
+            //const refsArray  =  foo.map(eachId => ({id: eachId, ref: createRef()}));
+            //if (element.checked){
+            //    outputSkills.append(document.getElementById(skills[i].skillName).value)
+        
+            //}
+    }
+    
+    return outputSkills
+}
             
     return (
         <div>
@@ -79,42 +87,13 @@ function PostsComponent(){
                 <textarea rows="4" cols="50" onChange={(e) => {setBody(e.target.value)}}></textarea><br />
 
                 {data ? showSkills() : 'loading'}
-                <input type="button" value="Submit" onClick={submitPost(postTitle,postBody,checked)}></input>
+                <input type="button" value="Submit" onClick={() => submitPost(postTitle,postBody,checked)}></input>
             </form>
         </div>
     )
     
 }
 
-function submitPost(title,content, checked){
 
-    const accessToken = authService.getCurrentUser().accessToken
-
-    if (checked != {}){
-        const skills = getSelection(checked)
-        console.log(title, content, skills, accessToken)
-        postsService.submitPost(title, content, skills, accessToken)
-
-
-    }
-}
-
-// form for submitting a post
-function getSelection(checked){
-    var outputSkills = []
-    //Get checkbox values of skills
-    for (const [key, value] of Object.entries(checked)){
-        console.log(key)
-        outputSkills.push(key)
-        //const refsArray  =  foo.map(eachId => ({id: eachId, ref: createRef()}));
-        //if (element.checked){
-        //    outputSkills.append(document.getElementById(skills[i].skillName).value)
-     
-        //}
-    }
-    
-    return outputSkills
-
-}
 
 export default PostsComponent

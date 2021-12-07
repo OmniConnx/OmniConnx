@@ -30,13 +30,17 @@ function Posts() {
 
   const generatePosts = () => {
     return data.map(e => {
+      var allSkills = ''
+      for (let i=0;i<e.skills.length;i++){
+        allSkills += e.skills[i]
+        }
 
       return(
         <div className = 'blurbs'>
           <div className='postHead'>
             <h1>{e.title}</h1>
-            <h1>{e.author}</h1>
             <h1>{e.username}</h1>
+            <p>{allSkills}</p>
           </div>
           <p>{e.content}</p>
    

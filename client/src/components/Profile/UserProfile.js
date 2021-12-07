@@ -60,7 +60,7 @@ function UserProfile() {
           <img className="usericon" src={Usericon}/>
           {/* Profile Info */}
           <div className="profinfo">
-            <h5>Username</h5> {/* {latestUser["username"]} */}
+            <h5>{ user.username }</h5> 
             <h5>Degree</h5>
             <h5>Gender</h5>
             <h5>Other</h5>
