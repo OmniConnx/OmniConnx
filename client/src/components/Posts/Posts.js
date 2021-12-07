@@ -30,13 +30,10 @@ function Posts() {
 
   const generatePosts = () => {
     return data.map(e => {
-<<<<<<< HEAD
       var allSkills = ''
       for (let i=0;i<e.skills.length;i++){
         allSkills += e.skills[i]
         }
-=======
->>>>>>> da4a4f6... Adding skills to posts works
 
       return(
         <div className = 'blurbs'>
