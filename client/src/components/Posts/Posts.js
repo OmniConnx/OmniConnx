@@ -30,7 +30,7 @@ function Posts() {
 
   const generatePosts = () => {
     return data.map(e => {
-      //console.log(e.author)
+
       return(
         <div className = 'blurbs'>
           <div className='postHead'>

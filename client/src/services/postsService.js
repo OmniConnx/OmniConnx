@@ -9,7 +9,7 @@ class postsService {
 
     // makes a POST req to backend to submit post into the database
     // takes in title and body of post as well as the author 
-    submitPost(title, content, accessToken, skills) {
+    submitPost(title, content, skills, accessToken) {
         axios
         .post(`${API_URL}/create`, {
             title,

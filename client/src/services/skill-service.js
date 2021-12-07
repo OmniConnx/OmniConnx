@@ -3,13 +3,13 @@ import authHeader from './auth-header';
 
 const API_URL = "http://localhost:8080/skill";
 
-/*
+
 // handles features for posts (submitting, updating, deleting, retrieving posts)
 class skillsService {
     getSkills() {
         return axios.get(API_URL)
     }
-
+/*
     updateUserSkill(skillName, users, skillid) {
         axios.put("/update/"+ skillid, {
             skillName,
@@ -29,8 +29,7 @@ class skillsService {
           console.log(error);
         });
     }
-
+*/
 }
 
 export default new skillsService()
-*/

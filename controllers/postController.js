@@ -7,11 +7,11 @@ const Skill = db.skills;
 exports.create =  (req, res) => { 
   var post = new Post(req.body);
   post.author = req.userId;
+  console.log("POST CREATED")
   var skillArray = []
   if (req.userId) { 
     for (let i = 0; i < req.body.skills.length; i++) {
       var existingSkill = Skill.findOne({skillName: req.body.skills[i]})
-      console.log('HELLOOO')
       existingSkill.then(skill => {
         if (!skill) {
           res.status(404).send({
