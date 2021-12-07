@@ -35,7 +35,7 @@ class postsService {
     updatePost(title, body, accessToken, postid, skills) {
         axios.put("/update/"+ postid, {
             title,
-            body,
+            content,
             skills
         },
         {
@@ -45,7 +45,7 @@ class postsService {
         })
         .then(response => {
             if (response.status == '200') {
-                console.log('Post was successfully submitted')
+                console.log('Post was successfully updated')
             }
         })
         .catch(error => {

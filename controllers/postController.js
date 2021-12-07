@@ -66,7 +66,7 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update post with id=${id}. Maybe post was not found!`
+          message: `Cannot update post with id=${id}. Post not found!`
         });
       } else res.send({ message: "Post was updated successfully." });
     })
