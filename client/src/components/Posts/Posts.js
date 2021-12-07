@@ -32,7 +32,7 @@ function Posts() {
     return data.map(e => {
       var allSkills = ''
       for (let i=0;i<e.skills.length;i++){
-        allSkills += e.skills[i]
+        allSkills += e.skills[i] + ' '
         }
 
       return(
