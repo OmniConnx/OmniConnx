@@ -1,5 +1,7 @@
 export const SUBMIT_POST = 'SUBMIT_POST';
-export const LOGIN_SUBMIT = 'LOGIN_SUBMIT';
+export const LOGIN_CHECK = 'LOGIN_CHECK';
+export const USER_CHECK = 'USER_CHECK';
+export const SET_USER = 'SET_USER';
 
 export const submitPost = (title, desc, image, tag1, tag2, tag3) => {
 	return {
@@ -15,12 +17,16 @@ export const submitPost = (title, desc, image, tag1, tag2, tag3) => {
 	};
 };
 
-export const loginSubmit = (email, password) => {
+export const loginCheck = (user) => {
 	return {
-		type: LOGIN_SUBMIT,
-		payload: {
-			email,
-			password,
-		},
+		type: LOGIN_CHECK,
+		payload: { user },
+	};
+};
+
+export const setUser = (user) => {
+	return {
+		type: SET_USER,
+		payload: { user },
 	};
 };

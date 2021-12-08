@@ -4,12 +4,14 @@ import { Link, useHistory } from 'react-router-dom';
 import './MakePost.css';
 import postsService from '../../services/postsService';
 import authService from '../../services/auth-service';
+import { useSelector } from 'react-redux';
 
 // Redux imports
 // import { useDispatch } from 'react-redux';
 // import { submitPost } from '../../reduxcomps/actions';
 
 function MakePost() {
+	const { user } = useSelector((state) => state.logged);
 	// Redirect helper variable
 	let history = useHistory();
 	const [files, setFiles] = useState([]);
@@ -43,14 +45,16 @@ function MakePost() {
 	const [tagTemp, setTempTag] = useState('');
 	const [tagsSt, setTag] = useState([]);
 
+	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+
 	// submitPost method
 
 	const submitPost = () => {
 		// Auth service
 
-		const accessToken = authService.getCurrentUser().accessToken;
-		postsService.submitPost(titles, descs, accessToken);
+		const accessToken = currUser.logged.user.accessToken;
 		history.push('/posts');
+		postsService.submitPost(titles, descs, accessToken);
 	};
 
 	return (

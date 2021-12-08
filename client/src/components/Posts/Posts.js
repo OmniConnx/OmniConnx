@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './Posts.css';
 import Mentorpost from '../../static/images/mentor-post.png';
@@ -9,7 +10,8 @@ import postsService from '../../services/postsService';
 import UserService from '../../services/user-service';
 
 function Posts() {
-	const user = AuthService.getCurrentUser();
+	// const user = AuthService.getCurrentUser();
+	const { user } = useSelector((state) => state.logged);
 	const [data, setData] = useState(null);
 	useEffect(() => {
 		postsService.getPosts().then((posts) => {
@@ -18,7 +20,7 @@ function Posts() {
 				const username = UserService.getUserID(element.author);
 
 				return username.then((element) => {
-					console.log(username);
+					// console.log(username);
 					element.author = username;
 				});
 			});

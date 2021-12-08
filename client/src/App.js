@@ -20,11 +20,12 @@ import reducers from './reduxcomps/reducers';
 import MakePost from './components/MakePost/MakePost';
 
 const POST_STATE = 'POST_STATE';
+const USER_STATE = 'USER_STATE';
 
 // Load state
 export const loadState = () => {
 	try {
-		const serializedState = localStorage.getItem(POST_STATE);
+		const serializedState = localStorage.getItem(USER_STATE);
 		if (serializedState === null) {
 			return undefined;
 		}
@@ -38,7 +39,7 @@ export const loadState = () => {
 export const saveState = (state) => {
 	try {
 		const serializedState = JSON.stringify(state);
-		localStorage.setItem(POST_STATE, serializedState);
+		localStorage.setItem(USER_STATE, serializedState);
 	} catch (err) {
 		console.log('Error saving data:' + err);
 	}
@@ -70,5 +71,7 @@ function App() {
 		</Provider>
 	);
 }
+
+export { store };
 
 export default App;
