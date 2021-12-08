@@ -6,6 +6,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginCheck } from '../../reduxcomps/actions';
+import { useSelector } from 'react-redux';
 
 // export default class Login extends Component {
 // 	constructor(props) {
@@ -51,6 +52,7 @@ import { loginCheck } from '../../reduxcomps/actions';
 // ------
 
 export default function Login() {
+	const { user } = useSelector((state) => state.logged);
 	const dispatch = useDispatch();
 	// helper variable for redirecting
 	const history = useHistory();

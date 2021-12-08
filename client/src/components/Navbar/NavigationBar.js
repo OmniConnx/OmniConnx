@@ -14,6 +14,8 @@ export default function NavigationBar() {
 	const { user } = useSelector((state) => state.logged);
 	// const [user2, setUser2] = useState(AuthService.getCurrentUser().accessToken);
 	const [user2, setUser2] = useState('');
+	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+	const currUserInfo = JSON.parse(currUser.logged.user);
 
 	const doLogoutUser = () => {
 		AuthService.logout();
@@ -76,6 +78,7 @@ export default function NavigationBar() {
 							<Nav.Link
 								className="nav-item"
 								onClick={() => {
+									window.alert(`Signed out`);
 									dispatch(setUser(null));
 									history.push('/');
 									return logoutUser;
@@ -84,6 +87,8 @@ export default function NavigationBar() {
 								Logout
 							</Nav.Link>
 						)}
+
+						{user && <header>Welcome Back {currUserInfo.username}</header>}
 						{!user && <LoginModal />}
 					</Nav>
 				</Navbar.Collapse>

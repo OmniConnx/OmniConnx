@@ -145,6 +145,7 @@ function MakePost() {
 						value="Submit"
 						onClick={() => {
 							submitPost();
+							window.alert('Your post was successfully created.');
 						}}
 					>
 						Submit
