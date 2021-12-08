@@ -25,7 +25,6 @@ function Posts() {
     })
   })
   // Gets post from database and returns parsed jsx elements
-  //deletePost(e._id)          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
   //          <input type="button" value="Submit" onClick={deletePost(e._id)}></input>
 
   const generatePosts = () => {
@@ -40,9 +39,13 @@ function Posts() {
           <div className='postHead'>
             <h1>{e.title}</h1>
             <h1>{e.username}</h1>
-            <p>{allSkills}</p>
+        
+            <p>Skills: {allSkills}</p>
           </div>
           <p>{e.content}</p>
+          <div>
+          <input type="button" value="Delete" onClick={() => postsService.deletePost(e._id, AuthService.getCurrentUser().accessToken)}></input>
+          </div>
    
         </div>
       )

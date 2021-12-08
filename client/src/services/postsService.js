@@ -32,7 +32,7 @@ class postsService {
     }
 
     //updates a specific post
-    updatePost(title, body, accessToken, postid, skills) {
+    updatePost(title, content, accessToken, postid, skills) {
         axios.put("/update/"+ postid, {
             title,
             content,
@@ -54,8 +54,14 @@ class postsService {
     }
 
     //deletes a specific post 
-    deletePost(postid) {
-        axios.delete(API_URL + '/delete/'+ postid)
+    
+    deletePost(postid, accessToken) {
+        axios.delete(API_URL + '/delete/'+ postid, {
+            headers: {
+            'x-access-token': accessToken
+            },
+            data: postid
+        });
     }
 
     //retrieve a number of latest posts, if origin is 0 then get the latest posts submitted to database

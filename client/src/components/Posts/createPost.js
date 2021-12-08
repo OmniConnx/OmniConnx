@@ -52,10 +52,7 @@ function PostsComponent(){
     
         if (checked != {}){
             const skills = getSelection(checked)
-            console.log("UPDATE")
-            console.log(title, content, skills, accessToken)
             postsService.submitPost(title, content, skills, accessToken)
-    
     
         }
     }
