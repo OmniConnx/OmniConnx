@@ -50,26 +50,31 @@ export default function NavigationBar() {
 
 					{/* Links Section */}
 					<Nav>
+						{user && 
+								<Nav.Link className="welcome">
+									Welcome Back {currUserFun().username} :)
+								</Nav.Link>
+						}
 						<Nav.Link className="nav-item" href="/posts">
 							Posts
 						</Nav.Link>
 						{/* Conditional rendering of logged-in features */}
 						{user && (
-							<Nav.Link className="nav-item" href="/prof">
-								Profile
-							</Nav.Link>
-						)}
-						{user && (
 							<Nav.Link className="nav-item" href="/skill">
 								Skills
 							</Nav.Link>
 						)}
-						{!user && (
-							<Nav.Link className="nav-item" href="/register">
-								Register
+						{user && (
+							<Nav.Link className="nav-item" href="/prof">
+								Profile
 							</Nav.Link>
 						)}
 						{!user && <Login />}
+						{!user && (
+							<Nav.Link className="log" href="/register">
+								Register
+							</Nav.Link>
+						)}
 						{/* {user && (
 							<Nav.Link
 								className="nav-item"
@@ -85,7 +90,7 @@ export default function NavigationBar() {
 
 						{user && (
 							<Nav.Link
-								className="nav-item"
+								className="log"
 								onClick={() => {
 									window.alert(`Signed out`);
 									dispatch(setUser(null));
@@ -96,8 +101,6 @@ export default function NavigationBar() {
 								Logout
 							</Nav.Link>
 						)}
-
-						{user && <header>Welcome Back {currUserFun().username}</header>}
 						{/* {!user && <LoginModal />} */}
 					</Nav>
 				</Navbar.Collapse>
