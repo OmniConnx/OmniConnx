@@ -60,7 +60,7 @@ function MakePost() {
 	const parseNew = JSON.parse(newCurrUser); // do accessToken.accessToken to get this
 	const accessToken = parseNew.accessToken;
 
-	console.log(accessToken)
+	// console.log(accessToken)
 
 	// submitPost method
 

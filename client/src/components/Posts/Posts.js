@@ -14,6 +14,17 @@ function Posts() {
 	// const curruser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 	// const newcurruser = JSON.parse(curruser.logged.user);
 
+    // returns access token 
+	const currUserFun = () => {
+		if (user){
+			const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+			const currUserInfo = JSON.parse(currUser.logged.user);
+      const accessToken = currUserInfo.accessToken
+			return accessToken
+		}
+	}
+
+
 	const [data, setData] = useState(null);
 	useEffect(() => {
 		postsService.getPosts().then((posts) => {
@@ -51,7 +62,7 @@ function Posts() {
 						<input
 							type="button"
 							value="Delete"
-							onClick={() => postsService.deletePost(e._id, accessToken)}
+							onClick={() => postsService.deletePost(e._id, currUserFun())}
 						></input>
 					</div>
 				</div>
@@ -64,7 +75,7 @@ function Posts() {
 			<h1>POSTS</h1>
 
 			{/* Create Post button | Accessed via log-in*/}
-			{user && (
+			{currUserFun() && (
 				<button>
 					<NavLink className="createPost" to="/createPost">
 						{' '}
