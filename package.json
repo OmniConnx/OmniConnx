@@ -7,7 +7,7 @@
         "test": "tests"
     },
     "scripts": {
-        "server": "nodemon server.js",
+        "server": "node server.js",
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "cd ./client && npm run build",
         "install-client": "cd ./client && npm install",

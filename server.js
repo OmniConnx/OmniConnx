@@ -40,26 +40,23 @@ skillsArr = ['Neurosurgery', 'Pediatrics', 'Gastrointestinal'];
 // var testpost = false
 // for (i=0;i<skillsArr.length;i++){
 
-// var skillexists = Skill.findOne({skillName: skillsArr[i]})
-// skillexists.then( result => {
-// if (result == null){
+// 	// var skillexists = Skill.findOne({skillName: skillsArr[i]})
+// 	// skillexists.then( result => {
+// 	// 	if (result == null){
 
-// if (testpost == false){
-// var newSkill = new Skill({skillName: skillsArr[i]})
-//   newSkill.save()
+// 			if (testpost == false){
+// 				var newSkill = new Skill({skillName: skillsArr[i]})
+// 				newSkill.save()
+// 			}
 
-// }
-// console.log('skillexists')
-// console.log(result)
-// }
-
-// if (skillexists == null){
-//   var newSkill = new Skill({skillName: skillsArr[i]})
-//   newSkill.save()
-// }
+// 		// }
+// 		// if (skillexists == null){
+// 		// 	var newSkill = new Skill({skillName: skillsArr[i]})
+// 		// 	newSkill.save()
+// 		// }s
 // }
 
-// testpost = true
+testpost = true
 
 app.get('/', function (req, res) {
 	res.sendFile(path + 'index.html');
