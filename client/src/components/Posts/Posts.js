@@ -11,9 +11,8 @@ import UserService from '../../services/user-service';
 
 function Posts() {
 	const { user } = useSelector((state) => state.logged);
-	const curruser = JSON.parse(window.localStorage.getItem('USER_STATE'));
-	const newcurruser = JSON.parse(curruser.logged.user);
-	const accessToken = newcurruser.accessToken;
+	// const curruser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+	// const newcurruser = JSON.parse(curruser.logged.user);
 
 	const [data, setData] = useState(null);
 	useEffect(() => {

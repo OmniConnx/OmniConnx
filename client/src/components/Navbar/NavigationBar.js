@@ -14,10 +14,15 @@ export default function NavigationBar() {
 	const { user } = useSelector((state) => state.logged);
 	// const [user2, setUser2] = useState(AuthService.getCurrentUser().accessToken);
 	const [user2, setUser2] = useState('');
-	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
-	const currUserInfo = JSON.parse(currUser.logged.user);
-	const accessToken = currUserInfo.accessToken
-	console.log(currUserInfo)
+	// console.log(currUserInfo)
+
+	const currUserFun = () => {
+		if (user){
+			const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+			const currUserInfo = JSON.parse(currUser.logged.user);
+			return currUserInfo
+		}
+	}
 
 	const doLogoutUser = () => {
 		AuthService.logout();
@@ -53,11 +58,6 @@ export default function NavigationBar() {
 								Profile
 							</Nav.Link>
 						)}
-						{user && (
-							<Nav.Link className="nav-item" href="/skill">
-								Skills
-							</Nav.Link>
-						)}
 						{!user && (
 							<Nav.Link className="nav-item" href="/register">
 								Register
@@ -68,7 +68,6 @@ export default function NavigationBar() {
 								Login page
 							</Nav.Link>
 						)}
-					
 						{/* {user && (
 							<Nav.Link
 								className="nav-item"
@@ -96,7 +95,7 @@ export default function NavigationBar() {
 							</Nav.Link>
 						)}
 
-						{user && <header>Welcome Back {currUserInfo.username}</header>}
+						{user && <header>Welcome Back {currUserFun().username}</header>}
 						{!user && <LoginModal />}
 					</Nav>
 				</Navbar.Collapse>
