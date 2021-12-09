@@ -14,16 +14,15 @@ function Posts() {
 	// const curruser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 	// const newcurruser = JSON.parse(curruser.logged.user);
 
-    // returns access token 
+	// returns access token
 	const currUserFun = () => {
-		if (user){
+		if (user) {
 			const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 			const currUserInfo = JSON.parse(currUser.logged.user);
-      const accessToken = currUserInfo.accessToken
-			return accessToken
+			const accessToken = currUserInfo.accessToken;
+			return accessToken;
 		}
-	}
-
+	};
 
 	const [data, setData] = useState(null);
 	useEffect(() => {

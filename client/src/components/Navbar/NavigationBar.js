@@ -17,12 +17,12 @@ export default function NavigationBar() {
 	// console.log(currUserInfo)
 
 	const currUserFun = () => {
-		if (user){
+		if (user) {
 			const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 			const currUserInfo = JSON.parse(currUser.logged.user);
-			return currUserInfo
+			return currUserInfo;
 		}
-	}
+	};
 
 	const doLogoutUser = () => {
 		AuthService.logout();

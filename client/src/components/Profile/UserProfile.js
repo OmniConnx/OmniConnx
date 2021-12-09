@@ -5,6 +5,7 @@ import './userProfile.css';
 import Usericon from '../../static/images/usericon.png';
 import AuthService from '../../services/auth-service';
 import skillsService from '../../services/skill-service';
+import { useSelector } from 'react-redux';
 
 //do get all request
 
@@ -101,8 +102,15 @@ function getSelection(){
 }
 
 function UserProfile() {
-	const user = AuthService.getCurrentUser();
-
+	const { user } = useSelector((state) => state.logged);
+	// returns access token
+	const currUserFun = () => {
+		if (user) {
+			const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+			const currUserInfo = JSON.parse(currUser.logged.user);
+			return currUserInfo.username;
+		}
+	};
 	const profile = (
 		<div className="userProfile">
 			<div className="prof">
@@ -113,7 +121,7 @@ function UserProfile() {
 				<img className="usericon" src={Usericon} />
 				{/* Profile Info */}
 				<div className="profinfo">
-					<h5>{user.username}</h5>
+					<h5>{currUserFun()}</h5>
 					<h5>Degree</h5>
 					<h5>Gender</h5>
 					<h5>Other</h5>
