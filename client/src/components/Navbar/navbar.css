@@ -8,7 +8,18 @@ font-family: 'Oswald', sans-serif; */
 	margin-bottom: 1rem;
 }
 
-.nav-item {
+.welcome {
 	font-family: 'Nunito', sans-serif;
-	color: #3c5487;
+	color: #3c5487!important;
+	font-weight: bold;
+}
+
+.log {
+    padding: 10px;
+	margin: 0 5px;
+    border: none;
+    border-radius: 12px;
+    background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+    color: white!important;
+	font-size: 14px;
 }

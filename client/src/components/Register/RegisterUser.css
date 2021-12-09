@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+/* font-family: 'Nunito', sans-serif; */
+/* font-family: 'Open Sans', sans-serif; */
+/* font-family: 'Oswald', sans-serif; */
+
+
+.register {
+  font-family: 'Nunito', sans-serif;
+  /* Animation */
+  /*Shrinking for mobile*/
+}
+
+.register .hero {
+  padding: 100px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.register .hero img {
+  border-radius: 10px;
+}
+
+.register .hero div .register1 {
+  width: 90%;
+}
+
+.register .hero div h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 72px;
+  color: #9D99E6;
+}
+
+.register .hero div h2 {
+  font-size: 64px;
+  color: #76C9BF;
+  margin: 1rem;
+  padding-bottom: 1rem;
+}
+
+.register .hero div p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 28px;
+  color: #3C5487;
+}
+
+/* .register .hero div ul button {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#3A31E0), to(#9D99E6));
+  background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+  color: white;
+  font-size: 24px;
+} */
+
+ul {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 4rem 0 4rem;
+}
+
+.button {
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+  color: white;
+  font-size: 24px;
+}

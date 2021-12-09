@@ -49,16 +49,20 @@ function Posts() {
 			}
 
 			return (
-				<div className="blurbs">
-					<div className="postHead">
-						<h1>{e.title}</h1>
-						<h1>{e.username}</h1>
-
-						<p>Skills: {allSkills}</p>
-					</div>
-					<p>{e.content}</p>
-					<div>
+				<div className="cards">
+					<div className="card">
+						<div className="postName">
+							<h4>{e.title}</h4>
+							{/* <p>{e.username}</p> */}
+						</div>
+					
+						<div className="postBody">
+							<h5>Skill: {allSkills}</h5>
+							<p>{e.content}</p>
+						</div>
+					
 						<input
+							className="button"
 							type="button"
 							value="Delete"
 							onClick={() => postsService.deletePost(e._id, currUserFun())}
@@ -71,26 +75,29 @@ function Posts() {
 
 	return (
 		<div className="posts">
-			<h1>POSTS</h1>
+			<div className="postinfo">
+				<div className="yourpost">
+					<h1>POSTS</h1>
+				</div>
 
-			{/* Create Post button | Accessed via log-in*/}
-			{currUserFun() && (
-				<button>
-					<NavLink className="createPost" to="/createPost">
-						{' '}
-						+ Post
-					</NavLink>
-				</button>
-			)}
-
-			{/* DisplaysPosts */}
-			<div className="displayPosts">{data ? generatePosts() : 'loading'}</div>
-
-			{/* PlaceholderPosts */}
-			<div className="blurbs">
-				<img className="mentorpost" src={Mentorpost} alt="" />
-				<img className="financialpost" src={Financialpost} alt="" />
-				<img className="reviewspost" src={Reviewspost} alt="" />
+				<div className="newpost">
+					{/* Create Post button | Accessed via log-in*/}
+					{currUserFun() && (
+						<button>
+							<NavLink className="createPost" to="/createPost">
+								{' '}
+								+ Post
+							</NavLink>
+						</button>
+					)}
+				</div>
+				
+				{/* DisplaysPosts */}
+				<div className="render">
+					<div className="nopostscard">
+						<div className="displayPosts">{data ? generatePosts() : 'loading'}</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 	);

@@ -1,3 +1,5 @@
+import "./RegisterUser.css"
+import Register1 from "../../static/images/register.png"
 import React, { Component, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -63,29 +65,38 @@ function RegisterUser() {
 	};
 
 	return (
-		<div>
-			<h1>Registration</h1>
-			<form>
-				<label for="register_username">Username: </label>
-				<br />
-				<input
-					type="text"
-					onChange={(e) => {
-						setRegisterUsername(e.target.value);
-					}}
-				></input>
-				<br />
-				<label for="register_password">Password: </label>
-				<br />
-				<input
-					type="password"
-					onChange={(e) => {
-						setRegisterPassword(e.target.value);
-					}}
-				></input>
-				<br />
-				<input type="button" value="Submit" onClick={registerUser}></input>
-			</form>
+		<div className="register">
+			<div className="hero">
+				<img className="register1" alt="register1" src={Register1} />
+				<div>
+					<h1>Registration</h1>
+					<form>
+						<ul>
+							<label for="register_username">Username: </label>
+							<input
+								type="text"
+								onChange={(e) => {
+									setRegisterUsername(e.target.value);
+								}}
+							></input>
+						</ul>	
+
+						<ul>
+							<label for="register_password">Password: </label>
+							<input
+								type="password"
+								onChange={(e) => {
+									setRegisterPassword(e.target.value);
+								}}
+							></input>
+						</ul>
+
+						<ul>
+							<input className="button" type="button" value="Submit" onClick={registerUser}></input>
+						</ul>
+					</form>
+				</div>
+			</div>
 		</div>
 	);
 }

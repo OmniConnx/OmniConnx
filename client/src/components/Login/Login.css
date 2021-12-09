@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+/* font-family: 'Nunito', sans-serif; */
+/* font-family: 'Open Sans', sans-serif; */
+/* font-family: 'Oswald', sans-serif; */
+
+
+.login {
+  font-family: 'Nunito', sans-serif;
+  /* Animation */
+  /*Shrinking for mobile*/
+}
+
+.login .hero {
+    padding: 100px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.login .hero div .login1 {
+    width: 90%;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 72px;
+    color: #9D99E6;
+}
+
+h2 {
+    font-size: 64px;
+    color: #76C9BF;
+    margin: 1rem;
+    padding-bottom: 1rem;
+}
+  
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    color: #3C5487;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 4rem 0 4rem;
+}
+
+.button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+    color: white;
+    font-size: 24px;
+}
+
+

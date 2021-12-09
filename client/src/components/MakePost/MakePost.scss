@@ -14,6 +14,7 @@ button {
 	border: none;
 	font-size: 1.5rem;
 	padding: 0.4rem 1.5rem;
+	margin: 0 2rem;
 	background-color: #76c9bf;
 	color: white;
 	transition: 0.2s;
@@ -25,8 +26,10 @@ button {
 		color: rgb(224, 224, 224);
 	}
 }
-.addTagsButton {
-	border-radius: 0 20px 20px 0;
+
+.showskill label{
+	margin: 0 0.5rem;
+
 }
 
 .form {
@@ -75,36 +78,43 @@ button {
 		padding: 2rem;
 		width: 100%;
 	}
-	.tagSec {
+	.skills ul{
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		h3 {
-			margin-right: 0.5rem;
-		}
-		& > * {
-			display: flex;
-			flex-direction: row;
-			margin-bottom: 1.5rem;
-		}
-		.disTag {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-		}
-		.tag {
-			display: flex;
-			align-items: center;
-			border: lightgrey solid 2px;
-			border-radius: 10px;
-			padding: 0 1rem;
-			margin-right: 0.2rem;
-		}
 	}
 	.button-bottoms {
 		display: flex;
 		flex-direction: row;
+		margin: 1rem;
 		width: 50%;
 		justify-content: space-around;
 	}
+
+	// .tagSec {
+	// 	display: flex;
+	// 	flex-direction: column;
+	// 	align-items: center;
+	// 	h3 {
+	// 		margin-right: 0.5rem;
+	// 	}
+	// 	& > * {
+	// 		display: flex;
+	// 		flex-direction: column;
+	// 		margin-bottom: 1.5rem;
+	// 	}
+	// 	.disTag {
+	// 		display: flex;
+	// 		flex-direction: column;
+	// 		justify-content: center;
+	// 		align-items: center;
+	// 	}
+	// 	.tag {
+	// 		display: flex;
+	// 		align-items: center;
+	// 		border: lightgrey solid 2px;
+	// 		border-radius: 10px;
+	// 		padding: 0 1rem;
+	// 		margin-right: 0.2rem;
+	// 	}
+	// }
 }
