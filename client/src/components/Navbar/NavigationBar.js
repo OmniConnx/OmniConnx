@@ -16,6 +16,8 @@ export default function NavigationBar() {
 	const [user2, setUser2] = useState('');
 	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 	const currUserInfo = JSON.parse(currUser.logged.user);
+	const accessToken = currUserInfo.accessToken
+	console.log(currUserInfo)
 
 	const doLogoutUser = () => {
 		AuthService.logout();
