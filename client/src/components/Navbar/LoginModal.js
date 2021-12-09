@@ -1,5 +1,6 @@
 import { loginSubmit } from '../../reduxcomps/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import AuthService from '../../services/auth-service';
 import React, { useState } from 'react';
 import { Modal, Button, Nav, Form } from 'react-bootstrap';
 import Login from '../Login/Login';
@@ -9,13 +10,32 @@ import {
 	Switch,
 	Link,
 	useHistory,
+
 } from 'react-router-dom';
 import RegisterUser from '../Register/RegisterUser';
 
 function LoginModal() {
+	const { user } = useSelector((state) => state.logged);
+	const dispatch = useDispatch();
+	// redirecting vairables
+	const history = useHistory();
+	const [loginUsername, setLoginUsername] = useState('');
+	const [loginPassword, setLoginPassword] = useState('');
+
 	const [show, setShow] = useState(false);
 	const handleShow = () => setShow(true);
 	const handleClose = () => setShow(false);
+
+	// takes current values of inputted username and password and submits it to the backend through auth-services
+	const loginUser = () => {
+		AuthService.login(loginUsername, loginPassword);
+		// console.log(`Username: ${loginUsername} \nPassword: ${loginPassword}`);
+	};
+
+	const handleRedirect = () => {
+		history.push('/');
+	};
+
 	return (
 		<>
 			<Nav.Link className="nav-item" onClick={handleShow}>
@@ -31,10 +51,39 @@ function LoginModal() {
 				<Modal.Header closeButton>
 					<Modal.Title>Log In</Modal.Title>
 				</Modal.Header>
-				<Switch>
-					<Route to={'/signup'} component={RegisterUser} />
-					<Route to={'/login'} component={Login} />
-				</Switch>
+
+				{/* HTML Code */}
+				<div>
+					<h1> Login </h1>
+					<form onSubmit={handleRedirect}>
+						<label for="register_username">Username: </label>
+						<br />
+						<input
+							type="text"
+							onChange={(e) => {
+								setLoginUsername(e.target.value);
+							}}
+						></input>
+						<br />
+						<label for="login_password">Password: </label>
+						<br />
+						<input
+							type="password"
+							onChange={(e) => {
+								setLoginPassword(e.target.value);
+							}}
+						></input>
+						<br />
+						<button
+							type="submit"
+							onClick={() => {
+								return loginUser();
+							}}
+						>
+							Submit
+						</button>
+					</form>
+				</div>
 			</Modal>
 		</>
 	);

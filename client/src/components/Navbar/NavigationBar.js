@@ -58,6 +58,11 @@ export default function NavigationBar() {
 								Profile
 							</Nav.Link>
 						)}
+						{user && (
+                            <Nav.Link className="nav-item" href="/skill">
+                                Skills
+                            </Nav.Link>
+                        )}
 						{!user && (
 							<Nav.Link className="nav-item" href="/register">
 								Register
