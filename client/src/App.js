@@ -65,7 +65,7 @@ function App() {
 					{/* <Route path="/createPost" component={createPost} /> */}
 					<Route path="/createPost" component={MakePost} />
 					<Route path="/register" component={Register} />
-					<Route path="/login" component={Login} />
+					{/* <Route path="/login" component={Login} /> */}
 					<Route path="/skill" component={Skills} />
 				</Switch>
 				<Footer />

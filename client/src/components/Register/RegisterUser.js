@@ -1,5 +1,8 @@
 import React, { Component, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Login from '../Login/Login';
+import { setShow } from '../../reduxcomps/actions';
 
 import authService from '../../services/auth-service';
 
@@ -42,6 +45,7 @@ import authService from '../../services/auth-service';
 
 function RegisterUser() {
 	const history = useHistory();
+	const dispatch = useDispatch();
 	// Form useState variables
 	const [registerUsername, setRegisterUsername] = useState('');
 	const [registerPassword, setRegisterPassword] = useState('');
@@ -53,8 +57,9 @@ function RegisterUser() {
 		const username = registerUsername;
 		const password = registerPassword;
 		authService.register(username, password);
-		history.push('/login');
+		history.push('/');
 		window.alert(`${username} has been registered.`);
+		dispatch(setShow(true));
 	};
 
 	return (

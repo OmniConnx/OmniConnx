@@ -3,21 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import AuthService from '../../services/auth-service';
 import React, { useState } from 'react';
 import { Modal, Button, Nav, Form } from 'react-bootstrap';
-import Login from '../Login/Login';
 import {
 	HashRouter as Router,
 	Route,
 	Switch,
 	Link,
 	useHistory,
-
 } from 'react-router-dom';
 import RegisterUser from '../Register/RegisterUser';
 
 function LoginModal() {
 	const { user } = useSelector((state) => state.logged);
 	const dispatch = useDispatch();
-	// redirecting vairables
+	// redirecting variables
 	const history = useHistory();
 	const [loginUsername, setLoginUsername] = useState('');
 	const [loginPassword, setLoginPassword] = useState('');
@@ -88,6 +86,8 @@ function LoginModal() {
 		</>
 	);
 }
+
+export default LoginModal;
 
 // export default LoginModal
 
@@ -168,5 +168,3 @@ function LoginModal() {
 // 		</>
 // 	);
 // }
-
-export default LoginModal;

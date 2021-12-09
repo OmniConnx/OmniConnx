@@ -7,6 +7,7 @@ import Logo from '../../static/images/logo.png';
 import AuthService from '../../services/auth-service';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginCheck, setUser } from '../../reduxcomps/actions';
+import Login from '../Login/Login';
 
 export default function NavigationBar() {
 	const history = useHistory();
@@ -59,20 +60,16 @@ export default function NavigationBar() {
 							</Nav.Link>
 						)}
 						{user && (
-                            <Nav.Link className="nav-item" href="/skill">
-                                Skills
-                            </Nav.Link>
-                        )}
+							<Nav.Link className="nav-item" href="/skill">
+								Skills
+							</Nav.Link>
+						)}
 						{!user && (
 							<Nav.Link className="nav-item" href="/register">
 								Register
 							</Nav.Link>
 						)}
-						{!user && (
-							<Nav.Link className="nav-item" href="/login">
-								Login page
-							</Nav.Link>
-						)}
+						{!user && <Login />}
 						{/* {user && (
 							<Nav.Link
 								className="nav-item"
@@ -101,7 +98,7 @@ export default function NavigationBar() {
 						)}
 
 						{user && <header>Welcome Back {currUserFun().username}</header>}
-						{!user && <LoginModal />}
+						{/* {!user && <LoginModal />} */}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
