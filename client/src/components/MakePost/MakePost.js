@@ -48,12 +48,12 @@ function MakePost() {
 	const [tagTemp, setTempTag] = useState('');
 	const [tagsSt, setTag] = useState([]);
 
-	useEffect(() => {
-		skillsService.getSkills().then((skills) => {
-			var skillsData = skills.data;
-			setData(skillsData);
-		});
-	});
+	// useEffect(() => {
+	// 	skillsService.getSkills().then((skills) => {
+	// 		var skillsData = skills.data;
+	// 		setData(skillsData);
+	// 	});
+	// });
 
 	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
 	const newCurrUser = currUser.logged.user;
@@ -71,28 +71,28 @@ function MakePost() {
 		postsService.submitPost(titles, descs, skills, accessToken);
 	};
 
-	const showSkills = () => {
-		return data.map((skill) => {
-			return (
-				//setChecked(e => !e)}
-				<div>
-					<label for={skill.skillName}> {skill.skillName} </label>
-					<input
-						type="checkbox"
-						id={skill.skillName}
-						onChange={() => {
-							var newChecked = { ...checked };
-							newChecked[skill.skillName]
-								? (newChecked[skill.skillName] = !newChecked[skill.skillName])
-								: (newChecked[skill.skillName] = true);
+	// const showSkills = () => {
+	// 	return data.map((skill) => {
+	// 		return (
+	// 			//setChecked(e => !e)}
+	// 			<div>
+	// 				<label for={skill.skillName}> {skill.skillName} </label>
+	// 				<input
+	// 					type="checkbox"
+	// 					id={skill.skillName}
+	// 					onChange={() => {
+	// 						var newChecked = { ...checked };
+	// 						newChecked[skill.skillName]
+	// 							? (newChecked[skill.skillName] = !newChecked[skill.skillName])
+	// 							: (newChecked[skill.skillName] = true);
 
-							setChecked(newChecked);
-						}}
-					></input>
-				</div>
-			);
-		});
-	};
+	// 						setChecked(newChecked);
+	// 					}}
+	// 				></input>
+	// 			</div>
+	// 		);
+	// 	});
+	// };
 
 	const getSelection = () => {
 		var outputSkills = [];
@@ -191,7 +191,7 @@ function MakePost() {
 							Submit
 						</Link>
 					</button> */}
-					{data ? showSkills() : 'loading'}
+					{/* {data ? showSkills() : 'loading'} */}
 					<button
 						className="button-hover"
 						value="Submit"
