@@ -10,6 +10,7 @@ import Posts from './components/Posts/Posts';
 import createPost from './components/Posts/createPost';
 import Register from './components/Register/RegisterUser';
 import Login from './components/Login/Login';
+import Skills from './components/Skills/Skills';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -65,6 +66,7 @@ function App() {
 					<Route path="/createPost" component={MakePost} />
 					<Route path="/register" component={Register} />
 					<Route path="/login" component={Login} />
+					<Route path="/skill" component={Skills} />
 				</Switch>
 				<Footer />
 			</div>

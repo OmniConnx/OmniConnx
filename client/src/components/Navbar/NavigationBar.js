@@ -53,6 +53,11 @@ export default function NavigationBar() {
 								Profile
 							</Nav.Link>
 						)}
+						{user && (
+							<Nav.Link className="nav-item" href="/skill">
+								Skills
+							</Nav.Link>
+						)}
 						{!user && (
 							<Nav.Link className="nav-item" href="/register">
 								Register
@@ -63,6 +68,7 @@ export default function NavigationBar() {
 								Login page
 							</Nav.Link>
 						)}
+					
 						{/* {user && (
 							<Nav.Link
 								className="nav-item"
