@@ -17,6 +17,7 @@ button {
   border: none;
   font-size: 1.5rem;
   padding: 0.4rem 1.5rem;
+  margin: 0 2rem;
   background-color: #76c9bf;
   color: white;
   -webkit-transition: 0.2s;
@@ -33,8 +34,8 @@ button {
   color: #e0e0e0;
 }
 
-.addTagsButton {
-  border-radius: 0 20px 20px 0;
+.showskill label {
+  margin: 0 0.5rem;
 }
 
 .form {
@@ -105,7 +106,7 @@ button {
   width: 100%;
 }
 
-.form .tagSec {
+.form .skills ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -113,49 +114,6 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.form .tagSec h3 {
-  margin-right: 0.5rem;
-}
-
-.form .tagSec > * {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin-bottom: 1.5rem;
-}
-
-.form .tagSec .disTag {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.form .tagSec .tag {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border: lightgrey solid 2px;
-  border-radius: 10px;
-  padding: 0 1rem;
-  margin-right: 0.2rem;
 }
 
 .form .button-bottoms {
@@ -166,6 +124,7 @@ button {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin: 1rem;
   width: 50%;
   -ms-flex-pack: distribute;
       justify-content: space-around;

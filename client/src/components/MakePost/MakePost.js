@@ -77,8 +77,7 @@ function MakePost() {
 		return data.map((skill) => {
 			return (
 				//setChecked(e => !e)}
-				<div>
-					<label for={skill.skillName}> {skill.skillName} </label>
+				<div className="showskill">
 					<input
 						type="checkbox"
 						id={skill.skillName}
@@ -91,6 +90,7 @@ function MakePost() {
 							setChecked(newChecked);
 						}}
 					></input>
+					<label for={skill.skillName}> {skill.skillName} </label>
 				</div>
 			);
 		});
@@ -126,13 +126,21 @@ function MakePost() {
 				<textarea
 					type="text"
 					className="text"
-					placeholder="Text (optional)"
+					placeholder="Post Content"
 					onChange={(e) => {
 						setDesc(e.target.value);
 					}}
 				/>
 
-				<div {...getRootProps()} className="img-input">
+				<div className="skills">
+					<h3>Skills: </h3>
+						{ data ? showSkills() : 'loading'}
+						{tagsSt.map((tag) => {
+							return {tag};
+						})}
+				</div>
+
+				{/* <div {...getRootProps()} className="img-input">
 					<input {...getInputProps()} />
 					{files.length !== 0 ? (
 						images
@@ -142,10 +150,10 @@ function MakePost() {
 							<button className="button-hover">Upload</button>
 						</div>
 					)}
-				</div>
+				</div> */}
 
-				<div className="tagSec">
-					<div>
+				{/* <div> */}
+					{/* <div>
 						<h3>Add a Tag </h3>
 						<input
 							type="text"
@@ -167,16 +175,16 @@ function MakePost() {
 						>
 							Add
 						</button>
-					</div>
-					<div>
+					</div> */}
+					{/* <div>
 						<h3>Tags: </h3>
 						<div className="disTag">
 							{tagsSt.map((tag) => {
-								return <div className="tag">{tag}</div>;
+								return {tag};
 							})}
 						</div>
-					</div>
-				</div>
+					</div> */}
+				{/* </div> */}
 				<div className="button-bottoms">
 					<button className="button-hover" type="submit">
 						Cancel
@@ -193,7 +201,7 @@ function MakePost() {
 							Submit
 						</Link>
 					</button> */}
-					{ data ? showSkills() : 'loading'}
+					
 					<button
 						className="button-hover"
 						value="Submit"
