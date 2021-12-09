@@ -128,10 +128,10 @@ function UserProfile() {
 				</div>
 
 				{/* Skills feature */}
-				<select id="selectSkill">
+				{/* <select id="selectSkill">
 					<option>Select a Skill</option>
-				</select>
-				<button onClick="getSelection()"> Add Skill </button>
+				</select> */}
+				{/* <button onClick="getSelection()"> Add Skill </button> */}
 
 				<div className="skill">
 					<div className="skillcard">
