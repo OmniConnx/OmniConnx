@@ -1,73 +1,64 @@
-import React, { Component } from "react"
-import { Form, Button, Nav, Modal } from "react-bootstrap"
-import authService from "../../services/auth-service"
+import React, { Component } from 'react';
 
-class Login extends Component {
-  state = {
-    isOpen: false,
-  }
+import AuthService from '../../services/auth-service';
 
-  openModal = () => this.setState({ isOpen: true })
-  closeModal = () => this.setState({ isOpen: false })
+import { useHistory, Redirect } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginCheck } from '../../reduxcomps/actions';
+import { useSelector } from 'react-redux';
 
-  constructor(props) {
-    super(props)
+export default function Login() {
+	const { user } = useSelector((state) => state.logged);
+	const dispatch = useDispatch();
+	// helper variable for redirecting
+	const history = useHistory();
+	const [loginUsername, setLoginUsername] = useState('');
+	const [loginPassword, setLoginPassword] = useState('');
 
-    // create react references to username and password input elements
-    this.loginUsername = React.createRef()
-    this.loginPassword = React.createRef()
+	// takes current values of inputted username and password and submits it to the backend through auth-services
+	const loginUser = () => {
+		AuthService.login(loginUsername, loginPassword);
+		// console.log(`Username: ${loginUsername} \nPassword: ${loginPassword}`);
+	};
 
-    // declare function to login user on submit
-    this.loginUser = this.loginUser.bind(this)
-  }
-  // takes current values of inputted username and password and submits it to the backend through auth-services
-  loginUser() {
-    authService.login(this.loginUsername.current.value, this.loginPassword.current.value)
-    console.log(
-      `Username: ${this.loginUsername.current.value} \nPassword: ${this.loginPassword.current.value}`
-    )
-  }
+	const handleRedirect = () => {
+		history.push('/');
+	};
 
-  render() {
-    return (
-      <>
-        <Nav.Link className="nav-item" onClick={this.openModal}>
-          Login
-        </Nav.Link>
-
-        <Modal show={this.state.isOpen} onHide={this.closeModal}>
-          <Modal.Header closeButton>
-            <Modal.Title>Login</Modal.Title>
-          </Modal.Header>
-          <Form onSubmit={this.loginUser}>
-            <Modal.Body>
-              <Form.Group className="mb-3" controlId="formUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control ref={this.loginUsername} type="text" placeholder="Enter username" />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="formPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  ref={this.loginPassword}
-                  type="password"
-                  placeholder="Enter password"
-                />
-              </Form.Group>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={this.closeModal}>
-                Close
-              </Button>
-              <Button variant="primary" type="submit" onClick={this.loginUser}>
-                Submit
-              </Button>
-            </Modal.Footer>
-          </Form>
-        </Modal>
-      </>
-    )
-  }
+	return (
+		<div>
+			<h1> Login </h1>
+			<form onSubmit={handleRedirect}>
+				<label for="register_username">Username: </label>
+				<br />
+				<input
+					type="text"
+					onChange={(e) => {
+						setLoginUsername(e.target.value);
+						console.log(loginUsername);
+					}}
+				></input>
+				<br />
+				<label for="login_password">Password: </label>
+				<br />
+				<input
+					type="password"
+					onChange={(e) => {
+						setLoginPassword(e.target.value);
+						console.log(loginPassword);
+					}}
+				></input>
+				<br />
+				<button
+					type="submit"
+					onClick={() => {
+						return loginUser();
+					}}
+				>
+					Submit
+				</button>
+			</form>
+		</div>
+	);
 }
-
-export default Login
