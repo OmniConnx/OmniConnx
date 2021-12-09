@@ -1,12 +1,20 @@
 import React, { useDropzone } from 'react-dropzone';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import './MakePost.css';
+import postsService from '../../services/postsService';
+import authService from '../../services/auth-service';
+import skillsService from '../../services/skill-service';
+import { useSelector } from 'react-redux';
 
 // Redux imports
 // import { useDispatch } from 'react-redux';
 // import { submitPost } from '../../reduxcomps/actions';
 
 function MakePost() {
+	const { user } = useSelector((state) => state.logged);
+	// Redirect helper variable
+	let history = useHistory();
 	const [files, setFiles] = useState([]);
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: 'image/*',
@@ -33,10 +41,73 @@ function MakePost() {
 	));
 
 	// For Redux useState variables
+	const [data, setData] = useState(null);
+	const [checked, setChecked] = useState({});
 	const [titles, setTitle] = useState('');
 	const [descs, setDesc] = useState('');
 	const [tagTemp, setTempTag] = useState('');
 	const [tagsSt, setTag] = useState([]);
+
+	useEffect(() => {
+		skillsService.getSkills().then((skills) => {
+			var skillsData = skills.data;
+			setData(skillsData);
+		});
+	});
+
+	const currUser = JSON.parse(window.localStorage.getItem('USER_STATE'));
+	const newCurrUser = currUser.logged.user;
+	const parseNew = JSON.parse(newCurrUser); // do accessToken.accessToken to get this
+	const accessToken = parseNew.accessToken;
+
+	// submitPost method
+
+	const submitPost = () => {
+		// Auth service
+
+		history.push('/posts');
+		const skills = getSelection(checked);
+		// postsService.submitPost(titles, descs, skills, accessToken.accessToken);
+		postsService.submitPost(titles, descs, skills, accessToken);
+	};
+
+	const showSkills = () => {
+		return data.map((skill) => {
+			return (
+				//setChecked(e => !e)}
+				<div>
+					<label for={skill.skillName}> {skill.skillName} </label>
+					<input
+						type="checkbox"
+						id={skill.skillName}
+						onChange={() => {
+							var newChecked = { ...checked };
+							newChecked[skill.skillName]
+								? (newChecked[skill.skillName] = !newChecked[skill.skillName])
+								: (newChecked[skill.skillName] = true);
+
+							setChecked(newChecked);
+						}}
+					></input>
+				</div>
+			);
+		});
+	};
+
+	const getSelection = () => {
+		var outputSkills = [];
+		//Get checkbox values of skills
+		for (const [key, value] of Object.entries(checked)) {
+			outputSkills.push(key);
+			//const refsArray  =  foo.map(eachId => ({id: eachId, ref: createRef()}));
+			//if (element.checked){
+			//    outputSkills.append(document.getElementById(skills[i].skillName).value)
+
+			//}
+		}
+
+		return outputSkills;
+	};
 
 	return (
 		<div className="main">
@@ -108,16 +179,25 @@ function MakePost() {
 					<button className="button-hover" type="submit">
 						Cancel
 					</button>
+					{/* <button className="button-hover">
+						<Link
+							style={{ textDecoration: 'none', color: 'white' }}
+							value="Submit"
+							to={`/posts`}
+							onClick={() => {
+								submitPost();
+							}}
+						>
+							Submit
+						</Link>
+					</button> */}
+					{data ? showSkills() : 'loading'}
 					<button
 						className="button-hover"
-						onClick={(e) => {
-							const post = {
-								user: `placeholder`,
-								tags: tagsSt,
-								image: images,
-								title: titles,
-								description: descs,
-							};
+						value="Submit"
+						onClick={() => {
+							submitPost();
+							window.alert('Your post was successfully created.');
 						}}
 					>
 						Submit

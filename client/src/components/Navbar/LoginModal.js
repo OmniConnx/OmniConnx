@@ -1,33 +1,43 @@
 import { loginSubmit } from '../../reduxcomps/actions';
 import { useDispatch } from 'react-redux';
-import React, { useState } from "react"
-import { Modal, Button, Nav, Form } from "react-bootstrap"
-import Login from "../Login/Login"
-import { HashRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom"
+import React, { useState } from 'react';
+import { Modal, Button, Nav, Form } from 'react-bootstrap';
+import Login from '../Login/Login';
+import {
+	HashRouter as Router,
+	Route,
+	Switch,
+	Link,
+	useHistory,
+} from 'react-router-dom';
 import RegisterUser from '../Register/RegisterUser';
 
 function LoginModal() {
-  const [show, setShow] = useState(false)
-  const handleShow = () => setShow(true)
-  const handleClose = () => setShow(false)
-  return (
-    <>
-      <Nav.Link className="nav-item" onClick={handleShow} >Login</Nav.Link>
+	const [show, setShow] = useState(false);
+	const handleShow = () => setShow(true);
+	const handleClose = () => setShow(false);
+	return (
+		<>
+			<Nav.Link className="nav-item" onClick={handleShow}>
+				Login
+			</Nav.Link>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Log In</Modal.Title>
-        </Modal.Header>
-        <Switch>
-        <Route to={"/signup"} component={RegisterUser} />
-        <Route to={"/login"} component={Login} />
-
-
-        </Switch>
-
-      </Modal>
-    </>
-  )
+			<Modal
+				show={show}
+				onHide={handleClose}
+				backdrop="static"
+				keyboard={false}
+			>
+				<Modal.Header closeButton>
+					<Modal.Title>Log In</Modal.Title>
+				</Modal.Header>
+				<Switch>
+					<Route to={'/signup'} component={RegisterUser} />
+					<Route to={'/login'} component={Login} />
+				</Switch>
+			</Modal>
+		</>
+	);
 }
 
 // export default LoginModal

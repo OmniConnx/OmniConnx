@@ -1,13 +1,18 @@
-import { LOGIN_SUBMIT } from '../actions';
+import { SET_USER } from '../actions';
 
-const loginReducer = (state = [], action) => {
+function defaultState() {
+	return {
+		user: null,
+	};
+}
+
+function loginReducer(state = defaultState(), action) {
 	switch (action.type) {
-		case LOGIN_SUBMIT:
-			const { email, password } = action.payload;
-			return [...state, { email, password }];
+		case SET_USER:
+			return { ...state, user: action.payload.user };
 		default:
 			return state;
 	}
-};
+}
 
 export default loginReducer;
