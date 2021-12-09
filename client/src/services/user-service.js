@@ -6,7 +6,7 @@ import axios from 'axios';
 import authHeader from './auth-header';
 
 //API URL 
-const API_URL = 'http://localhost:8080/test/';
+const API_URL = 'http://localhost:8080/';
 
 class UserService {
   getPublicContent() {
@@ -17,6 +17,29 @@ class UserService {
     return axios.get(API_URL + 'user', { headers: authHeader() });
   }
 
+  getUserID(id) {
+    return axios.get(API_URL + 'user/'+ id)
+  }
+
+  updateUser(username, skills, accessToken, userid) {
+      axios.put("/update/"+ userid, {
+          username,
+          skills
+      },
+      {
+          headers: {
+              'x-access-token': accessToken
+          }
+      })
+      .then(response => {
+          if (response.status == '200') {
+              console.log('Post was successfully submitted')
+          }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
 }
 

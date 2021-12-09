@@ -4,11 +4,11 @@ font-family: 'Open Sans', sans-serif;
 font-family: 'Oswald', sans-serif; */
 
 .navbar {
-  background-color: #D4ECEF;
-  margin-bottom: 1rem;
+	background-color: #d4ecef;
+	margin-bottom: 1rem;
 }
 
 .nav-item {
-  font-family: 'Nunito', sans-serif;
-  color:#3C5487 ;
+	font-family: 'Nunito', sans-serif;
+	color: #3c5487;
 }
