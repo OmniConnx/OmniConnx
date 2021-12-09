@@ -1,79 +1,136 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400&family=Open+Sans:wght@300;400&family=Oswald:wght@400;500&display=swap");
 .posts {
-	font-family: 'Nunito', sans-serif;
-	padding: 1rem;
-}
-
-.posts .createPost {
-	color: white;
-	text-decoration: none;
-}
-
-.posts h1 {
-	font-family: 'Oswald', sans-serif;
-	font-size: 48px;
-	color: #76c9bf;
-	padding: 2rem;
-}
-
-.posts p {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
-	color: #3c5487;
-	padding-bottom: 2rem;
+  padding: 2rem 7rem;
 }
 
 .posts button {
-	-webkit-box-shadow: none;
-	box-shadow: none;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 20px;
-	background-image: -webkit-gradient(
-		linear,
-		left top,
-		right top,
-		from(#3a31e0),
-		to(#9d99e6)
-	);
-	background-image: linear-gradient(to right, #3a31e0, #9d99e6);
-	color: white;
-	font-size: 24px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 20px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#3A31E0), to(#9D99E6));
+  background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+  color: white !important;
+  font-size: 24px;
 }
 
-.posts .blurbs {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: row;
-	flex-direction: row;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
+.posts .postinfo .yourpost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Oswald', sans-serif;
+  color: #00A3CF;
 }
 
-.posts .blurbs > * {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-orient: horizontal;
-	-webkit-box-direction: normal;
-	-ms-flex-direction: row;
-	flex-direction: row;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	padding: 1rem;
+.posts .postinfo .newpost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.posts .blurbs > * img {
-	width: 50%;
+.posts .render {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 7rem;
+}
+
+.posts .render .nopostscard {
+  color: gray;
+  padding: 4rem;
+  width: 100%;
+}
+
+.posts .cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.posts .cards > * {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0;
+}
+
+.posts .cards > * > * {
+  margin: 2rem;
+}
+
+.posts .cards > * img {
+  height: auto;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.posts .cards > * .postName {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.posts .cards > * .postBody h5 {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.posts .cards > * .delete {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.posts .cards > .card {
+  border: 2px solid lightgray;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=Posts.css.map */

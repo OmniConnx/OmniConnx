@@ -3,52 +3,87 @@
 // font-family: 'Open Sans', sans-serif;
 // font-family: 'Oswald', sans-serif;
 
- //Landing page 2
- .posts {
-    font-family: 'Nunito', sans-serif;
-    padding: 1rem;
-    .createPost {
-      color: white;
-      text-decoration: none;
-    }
-    h1 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 48px;
-      color: #76C9BF;
-      padding: 2rem;
-    }
-    p {
-      font-family: 'Open Sans', sans-serif;
-      font-size: 24px;
-      color: #3C5487;
-      padding-bottom: 2rem;
-    }
-    button {
-      box-shadow: none;
-      padding: 10px 30px;
-      border: none;
-      border-radius: 20px;
-      background-image: linear-gradient(to right, #3A31E0, #9D99E6);
-      color: white;
-      font-size: 24px;
-    }
-    .blurbs {
+.posts {
+  padding: 2rem 7rem;
+  button {
+    box-shadow: none;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right, #3A31E0, #9D99E6);
+    color: white!important;
+    font-size: 24px;
+  }
+
+  .postinfo {
+      .yourpost {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          font-family: 'Oswald', sans-serif;
+          color: #00A3CF;
+      }
+      .newpost {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+      }
+  }
+
+  .render {
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
+      padding: 0 7rem;
+      .nopostscard {
+          color: gray;
+          padding: 4rem;
+          width: 100%;
+      }
+  }
+
+  // cards currently not in use!
+  .cards {
+      display: flex;
+      flex-direction: row;
       flex-wrap: wrap;
+      justify-content: center;
       & > * {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 1rem;
-        img {
-          width: 50%;
-        }
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin: 10px 0;
+          // width:1000px;
+          & > * {
+              margin: 2rem;
+          }
+          img {
+              height: auto;
+              width: 100px;
+              border-radius: 50%;
+          }
+          .postName{
+            justify-content: flex-start;
+          }
+          .postBody h5{
+            justify-content: flex-start;
+          }
+          .delete{
+            justify-content: flex-end;
+          }
+      }
+      & > .card {
+          border: 2px solid lightgray;
+          border-radius: 10px;
       }
   }
 }
+
+
+
 
 
 
