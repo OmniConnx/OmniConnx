@@ -1,3 +1,4 @@
+import "./Login.css"
 import React, { useState } from 'react';
 import AuthService from '../../services/auth-service';
 import { setShow } from '../../reduxcomps/actions';
@@ -100,41 +101,50 @@ export default function Login() {
 				keyboard={false}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>Log In</Modal.Title>
+					<Modal.Title>Login</Modal.Title>
 				</Modal.Header>
 
 				{/* HTML Code */}
-				<div>
-					<h1> Login </h1>
-					{/* <form onSubmit={handleRedirect}> */}
-					<label for="register_username">Username: </label>
-					<br />
-					<input
-						type="text"
-						onChange={(e) => {
-							setLoginUsername(e.target.value);
-						}}
-					></input>
-					<br />
-					<label for="login_password">Password: </label>
-					<br />
-					<input
-						type="password"
-						onChange={(e) => {
-							setLoginPassword(e.target.value);
-						}}
-					></input>
-					<br />
-					<button
-						type="submit"
-						onClick={() => {
-							handleRedirect();
-							return loginUser();
-						}}
-					>
-						Submit
-					</button>
-					{/* </form> */}
+				<div className="login">
+					<div className="hero">
+						<ul>
+							<h1> Login </h1>
+						</ul>
+						{/* <form onSubmit={handleRedirect}> */}
+						<ul>
+							<label for="register_username">Username: </label>
+							<input
+								type="text"
+								onChange={(e) => {
+									setLoginUsername(e.target.value);
+								}}
+							></input>
+						</ul>
+
+						<ul>
+							<label for="login_password">Password: </label>
+							<input
+								type="password"
+								onChange={(e) => {
+									setLoginPassword(e.target.value);
+								}}
+							></input>
+						</ul>
+
+						<ul>
+							<button
+								className="button"
+								type="submit"
+								onClick={() => {
+									handleRedirect();
+									return loginUser();
+								}}
+							>
+								Submit
+							</button>
+						</ul>
+						{/* </form> */}
+					</div>
 				</div>
 			</Modal>
 		</>
