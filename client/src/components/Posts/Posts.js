@@ -31,8 +31,8 @@ function Posts() {
 			const usernamePromise = postData.map((element) => {
 				const username = UserService.getUserID(element.author);
 
-				return username.then((element) => {
-					element.author = username;
+				return username.then((elem) => {
+					element.username = elem.data.username;
 				});
 			});
 			Promise.all(usernamePromise).then(() => setData(postData));
@@ -52,8 +52,8 @@ function Posts() {
 				<div className="cards">
 					<div className="card">
 						<div className="postName">
+							<p>{e.username}</p>
 							<h4>{e.title}</h4>
-							{/* <p>{e.username}</p> */}
 						</div>
 					
 						<div className="postBody">
@@ -73,31 +73,29 @@ function Posts() {
 		});
 	};
 
+
 	return (
 		<div className="posts">
-			<div className="postinfo">
-				<div className="yourpost">
-					<h1>POSTS</h1>
-				</div>
+			<h1>POSTS</h1>
 
-				<div className="newpost">
-					{/* Create Post button | Accessed via log-in*/}
-					{currUserFun() && (
-						<button>
-							<NavLink className="createPost" to="/createPost">
-								{' '}
-								+ Post
-							</NavLink>
-						</button>
-					)}
-				</div>
-				
-				{/* DisplaysPosts */}
-				<div className="render">
-					<div className="nopostscard">
-						<div className="displayPosts">{data ? generatePosts() : 'loading'}</div>
-					</div>
-				</div>	
+			{/* Create Post button | Accessed via log-in*/}
+			{currUserFun() && (
+				<button>
+					<NavLink className="createPost" to="/createPost">
+						{' '}
+						+ Post
+					</NavLink>
+				</button>
+			)}
+
+			{/* DisplaysPosts */}
+			<div className="displayPosts">{data ? generatePosts() : 'loading'}</div>
+
+			{/* PlaceholderPosts */}
+			<div className="blurbs">
+				<img className="mentorpost" src={Mentorpost} alt="" />
+				<img className="financialpost" src={Financialpost} alt="" />
+				<img className="reviewspost" src={Reviewspost} alt="" />
 			</div>
 		</div>
 	);
